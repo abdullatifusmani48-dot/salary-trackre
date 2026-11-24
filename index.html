@@ -3,96 +3,99 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0b1425">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a1220">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>دفتر معاش | مدیریت دریافتی‌ها</title>
+<title>دفتر معاش | مدیریت مالی</title>
 <link rel="manifest" href="./manifest.json">
 <style>
 :root{
-  --bg:#091321;--panel:#111f32;--panel2:#162840;
-  --line:rgba(255,255,255,.09);--text:#f4f7fb;
-  --muted:#9aabc0;--teal:#49dfc1;--gold:#f3c879;
-  --red:#ff7d86;--radius:22px;
+ --bg:#091321;--surface:#111e30;--surface2:#17283e;
+ --line:rgba(255,255,255,.09);--text:#f4f7fb;
+ --muted:#91a2b9;--teal:#53dfc2;--gold:#eac27c;
+ --red:#ff858d;--radius:22px;
 }
 *{box-sizing:border-box}
 body{
-  margin:0;background:
-  radial-gradient(ellipse at 90% 0%,rgba(38,157,147,.16),transparent 38%),
-  radial-gradient(ellipse at 0% 35%,rgba(61,101,170,.13),transparent 35%),
-  var(--bg);
-  color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif;
-  min-height:100vh;padding:20px 14px 45px;
+ margin:0;min-height:100vh;padding:20px 14px 45px;
+ background:radial-gradient(ellipse at 90% 0%,#174a493d,transparent 38%),
+ radial-gradient(ellipse at 0% 40%,#263f6730,transparent 38%),var(--bg);
+ color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif;
 }
-button,input,textarea{font:inherit}
+button,input,select,textarea{font:inherit}
 button{cursor:pointer}
 .app{max-width:760px;margin:auto}
-.topbar{display:flex;justify-content:space-between;align-items:center;margin:8px 0 24px}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin:8px 0 25px}
 .brand{display:flex;align-items:center;gap:12px}
 .logo{
- width:46px;height:46px;border-radius:15px;display:grid;place-items:center;
- background:linear-gradient(145deg,#50e0c1,#188c8a);
- color:#062323;font-size:23px;font-weight:900;
- box-shadow:0 8px 28px #35c9ae30;
+ width:48px;height:48px;border-radius:16px;display:grid;place-items:center;
+ background:linear-gradient(145deg,#65ecd0,#238f91);
+ color:#082a2a;font-size:24px;font-weight:900;
+ box-shadow:0 9px 30px #40d4b52c
 }
-.brand h1{font-size:18px;margin:0 0 4px}
+.brand h1{font-size:19px;margin:0 0 5px}
 .brand p{font-size:11px;color:var(--muted);margin:0}
-.top-date{font-size:11px;color:var(--muted);text-align:left}
+.today{text-align:left;color:var(--muted);font-size:11px;line-height:1.8}
 .hero{
  position:relative;overflow:hidden;padding:25px 23px;border-radius:27px;
- background:linear-gradient(125deg,#183c4b,#142d40 55%,#1b2941);
- border:1px solid #75d9c126;box-shadow:0 18px 45px #0003;
+ background:linear-gradient(125deg,#19414a,#173349 55%,#202c45);
+ border:1px solid #70d9c129;box-shadow:0 18px 45px #0003
 }
 .hero:after{
  content:"";position:absolute;width:190px;height:190px;border-radius:50%;
- border:1px solid #ffffff12;left:-65px;top:-85px;
- box-shadow:0 0 0 22px #ffffff08,0 0 0 45px #ffffff05;
+ border:1px solid #ffffff16;left:-65px;top:-85px;
+ box-shadow:0 0 0 22px #ffffff08,0 0 0 45px #ffffff05
 }
-.hero-label{color:#b4d9d6;font-size:12px}
-.hero-total{font-size:clamp(29px,7vw,42px);font-weight:800;letter-spacing:.3px;margin:13px 0 5px;direction:ltr;text-align:right}
+.hero-label{color:#b9d9d6;font-size:12px}
+.hero-total{
+ font-size:clamp(30px,8vw,43px);font-weight:850;
+ letter-spacing:.3px;margin:13px 0 7px;direction:ltr;text-align:right
+}
 .hero-foot{font-size:11px;color:#c0d6d5}
-.hero-mark{position:absolute;left:22px;bottom:22px;font-size:35px;opacity:.85}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 23px}
+.hero-star{position:absolute;left:22px;bottom:20px;font-size:35px;color:var(--gold)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 25px}
 .stat{
- background:linear-gradient(145deg,#14243a,#101d30);
- border:1px solid var(--line);border-radius:18px;padding:15px 12px;min-width:0;
+ background:linear-gradient(145deg,#16283e,#101d30);
+ border:1px solid var(--line);border-radius:18px;padding:15px 12px;min-width:0
 }
-.stat-icon{font-size:17px}
-.stat strong{display:block;font-size:20px;margin:9px 0 4px;direction:ltr;text-align:right}
+.stat-icon{font-size:18px}
+.stat strong{display:block;font-size:21px;margin:9px 0 4px;direction:ltr;text-align:right}
 .stat span{font-size:10px;color:var(--muted)}
-.section-head{display:flex;justify-content:space-between;align-items:center;margin:24px 2px 12px}
+.section-head{display:flex;justify-content:space-between;align-items:center;margin:25px 2px 12px}
 .section-head h2{font-size:15px;margin:0}
-.section-head small{color:var(--muted);font-size:11px}
+.section-head small{font-size:10px;color:var(--muted)}
 .panel{
- background:linear-gradient(145deg,#14243a,#101d30);
+ background:linear-gradient(145deg,#15263c,#101d30);
  border:1px solid var(--line);border-radius:var(--radius);
- padding:17px;margin-bottom:13px;
+ padding:17px;margin-bottom:13px
 }
-.field{margin-bottom:13px}
-.field label{display:block;color:#bdcadd;font-size:12px;margin-bottom:8px}
-.field input,.field textarea{
- width:100%;border:1px solid #ffffff17;background:#091728;color:white;
- padding:13px 14px;border-radius:13px;outline:none;font-size:14px;
+.field{margin-bottom:15px}
+.field label{display:block;color:#c4d0df;font-size:12px;margin-bottom:9px}
+.field input,.field textarea,.date-select{
+ width:100%;border:1px solid #ffffff18;background:#0b192a;
+ color:white;padding:13px 12px;border-radius:13px;outline:none;font-size:14px;
 }
-.field input:focus,.field textarea:focus{border-color:var(--teal)}
-.field input::placeholder,.field textarea::placeholder{color:#72849b}
+.field input:focus,.field textarea:focus,.date-select:focus{border-color:var(--teal)}
 .field textarea{resize:vertical;min-height:65px}
-.row-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.field input::placeholder,.field textarea::placeholder{color:#71839a}
+.date-grid{display:grid;grid-template-columns:1.15fr 1fr .8fr;gap:8px}
+.date-select{appearance:auto;min-width:0;padding:12px 7px}
+.date-hint{font-size:10px;color:var(--muted);margin-top:8px}
 .btn{
  border:0;border-radius:13px;padding:13px 16px;font-weight:750;
- transition:.2s;display:inline-flex;justify-content:center;align-items:center;gap:7px;
+ display:inline-flex;justify-content:center;align-items:center;gap:7px;
+ transition:.2s
 }
 .btn:active{transform:scale(.98)}
-.primary{background:linear-gradient(120deg,#54e2c2,#2bb9a8);color:#082a29}
-.secondary{background:#20334b;color:#e7f0f8;border:1px solid var(--line)}
-.gold{background:linear-gradient(120deg,#f6d99b,#d8ae61);color:#33250c}
-.danger{background:#4b2632;color:#ffb7bd}
+.primary{background:linear-gradient(120deg,#5ce5c5,#2bb6a6);color:#082a29}
+.secondary{background:#20344d;color:#e7f0f8;border:1px solid var(--line)}
+.gold{background:linear-gradient(120deg,#f5d99e,#d8ae61);color:#34260d}
 .full{width:100%}
 .actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}
 .week{
- background:#122239;border:1px solid var(--line);border-radius:17px;
- padding:15px;margin-bottom:10px;
+ background:#13243a;border:1px solid var(--line);
+ border-radius:17px;padding:15px;margin-bottom:10px
 }
 .week-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .week-name{font-weight:750;font-size:13px}
@@ -101,30 +104,26 @@ button{cursor:pointer}
 .week-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:13px;padding-top:11px;border-top:1px solid var(--line)}
 .pill{font-size:10px;border-radius:30px;padding:5px 9px;background:#1c3942;color:#8fe8d7}
 .pill.empty{background:#3d3031;color:#f2b6a5}
-.payment{
- display:flex;justify-content:space-between;align-items:center;gap:12px;
- padding:13px 0;border-bottom:1px solid var(--line);
-}
+.bar-track{height:5px;background:#ffffff0d;border-radius:8px;margin-top:12px;overflow:hidden}
+.bar-fill{height:100%;border-radius:8px;background:linear-gradient(90deg,#39bba9,#72e7cc)}
+.payment{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
 .payment:last-child{border-bottom:0}
-.payment-title{font-size:13px;font-weight:700}
+.payment-title{font-size:13px;font-weight:700;overflow-wrap:anywhere}
 .payment-sub{font-size:10px;color:var(--muted);margin-top:5px}
-.payment-amount{font-size:14px;font-weight:800;color:var(--teal);direction:ltr}
-.payment-actions{display:flex;gap:6px;margin-top:7px}
-.mini{
- border:1px solid var(--line);background:#1a2c43;color:#dce8f4;
- border-radius:8px;padding:5px 9px;font-size:10px;
-}
-.empty-state{text-align:center;color:var(--muted);padding:23px 10px;font-size:12px;line-height:2}
-.empty-state b{display:block;font-size:26px;margin-bottom:5px}
-.footer{text-align:center;color:#61748c;font-size:10px;margin:25px 0 8px}
-.notice{font-size:11px;color:var(--muted);line-height:1.9;margin:10px 2px}
+.payment-amount{font-size:14px;font-weight:800;color:var(--teal);direction:ltr;white-space:nowrap}
+.payment-actions{display:flex;gap:6px;margin-top:8px}
+.mini{border:1px solid var(--line);background:#1b2e45;color:#dce8f4;border-radius:8px;padding:6px 10px;font-size:10px}
+.empty{text-align:center;color:var(--muted);padding:24px 10px;font-size:12px;line-height:2}
+.empty b{display:block;font-size:27px;margin-bottom:5px}
+.notice{font-size:11px;color:var(--muted);line-height:1.9;margin:12px 2px 2px}
 .hidden{display:none!important}
-hr{border:0;border-top:1px solid var(--line);margin:16px 0}
+hr{border:0;border-top:1px solid var(--line);margin:17px 0}
+.footer{text-align:center;color:#61748c;font-size:10px;margin:27px 0 8px}
 #toast{
  position:fixed;bottom:25px;left:50%;transform:translateX(-50%);
  background:#e5fff8;color:#092a27;padding:12px 18px;border-radius:13px;
  font-size:12px;font-weight:750;box-shadow:0 8px 30px #0005;
- opacity:0;pointer-events:none;transition:.25s;z-index:10;white-space:nowrap;
+ opacity:0;pointer-events:none;transition:.25s;z-index:10;white-space:nowrap
 }
 #toast.show{opacity:1}
 @media(max-width:420px){
@@ -134,203 +133,287 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
  .stat{padding:12px 9px}
  .stat strong{font-size:17px}
  .stat span{font-size:9px}
- .row-fields{grid-template-columns:1fr}
+ .date-grid{gap:6px}
+ .date-select{font-size:12px}
 }
 </style>
 </head>
 <body>
 <div class="app">
- <header class="topbar">
-  <div class="brand">
-   <div class="logo">د</div>
-   <div><h1>دفتر معاش</h1><p>مدیریت هوشمند دریافتی‌های هفتگی</p></div>
+
+<header class="topbar">
+ <div class="brand">
+  <div class="logo">د</div>
+  <div>
+   <h1>دفتر معاش</h1>
+   <p>مدیریت هوشمند دریافتی‌های هفتگی</p>
   </div>
-  <div class="top-date" id="todayText"></div>
- </header>
+ </div>
+ <div class="today" id="todayText"></div>
+</header>
 
- <section class="hero">
-  <div class="hero-label">مجموع کل دریافتی‌ها</div>
-  <div class="hero-total" id="grandTotal">0</div>
-  <div class="hero-foot">مجموع تمام پرداخت‌های ثبت‌شده</div>
-  <div class="hero-mark">✦</div>
- </section>
+<section class="hero">
+ <div class="hero-label">مجموع کل دریافتی‌ها</div>
+ <div class="hero-total" id="grandTotal">0</div>
+ <div class="hero-foot">مجموع تمام پرداخت‌های ثبت‌شده</div>
+ <div class="hero-star">✦</div>
+</section>
 
- <section class="stats">
-  <div class="stat"><div class="stat-icon">📅</div><strong id="weekCount">0</strong><span>هفته از شروع کار</span></div>
-  <div class="stat"><div class="stat-icon">💳</div><strong id="paymentCount">0</strong><span>تعداد پرداخت‌ها</span></div>
-  <div class="stat"><div class="stat-icon">○</div><strong id="unpaidCount">0</strong><span>هفته بدون پرداخت</span></div>
- </section>
+<section class="stats">
+ <div class="stat"><div class="stat-icon">📅</div><strong id="weekCount">0</strong><span>هفته از شروع کار</span></div>
+ <div class="stat"><div class="stat-icon">💳</div><strong id="paymentCount">0</strong><span>تعداد پرداخت‌ها</span></div>
+ <div class="stat"><div class="stat-icon">◷</div><strong id="unpaidCount">0</strong><span>هفته بدون پرداخت</span></div>
+</section>
 
- <div class="section-head"><h2>ثبت پرداخت جدید</h2><small>دریافتی واقعی خود را وارد کنید</small></div>
- <section class="panel">
-  <form id="paymentForm">
-   <input type="hidden" id="editId">
-   <div class="row-fields">
-    <div class="field">
-     <label for="payDate">تاریخ پرداخت (هجری شمسی)</label>
-     <input id="payDate" type="text" inputmode="numeric" placeholder="1405/01/15" required>
-    </div>
-    <div class="field">
-     <label for="payAmount">مبلغ دریافتی</label>
-     <input id="payAmount" type="number" min="0.01" step="0.01" placeholder="مثلاً 15000" required>
-    </div>
-   </div>
-   <div class="field">
-    <label for="payNote">یادداشت (اختیاری)</label>
-    <textarea id="payNote" placeholder="مثلاً پرداخت هفته اول..."></textarea>
-   </div>
-   <button class="btn primary full" id="submitPayment" type="submit">＋ ثبت پرداخت</button>
-   <button class="btn secondary full hidden" id="cancelEdit" type="button" style="margin-top:8px">لغو ویرایش</button>
-  </form>
- </section>
-
- <div class="section-head"><h2>گزارش هفتگی</h2><small>بر اساس تاریخ شروع کار</small></div>
- <div id="weeklyList"></div>
-
- <div class="section-head"><h2>تاریخچه پرداخت‌ها</h2><small id="historyCount">0 پرداخت</small></div>
- <section class="panel" id="historyList"></section>
-
- <div class="section-head"><h2>تنظیمات و پشتیبان</h2></div>
- <section class="panel">
-  <div class="field">
-   <label for="startDate">تاریخ شروع کار (هجری شمسی)</label>
-   <input id="startDate" type="text" inputmode="numeric" placeholder="1405/01/01">
-  </div>
-  <button class="btn gold full" id="saveStart" type="button">ذخیره تاریخ شروع کار</button>
-  <hr>
-  <div class="actions">
-   <button class="btn secondary" id="backupBtn" type="button">⬇ دریافت پشتیبان</button>
-   <button class="btn secondary" id="restoreBtn" type="button">⬆ بازیابی پشتیبان</button>
-  </div>
-  <input type="file" id="restoreFile" accept=".json,application/json" class="hidden">
-  <p class="notice">اطلاعات در حافظه همین گوشی ذخیره می‌شود. برای انتقال به گوشی دیگر، از پشتیبان استفاده کنید.</p>
- </section>
-
- <div class="footer">دفتر معاش · ساده، دقیق و همیشه همراه شما</div>
+<div class="section-head">
+ <h2>ثبت پرداخت جدید</h2><small>مبلغ واقعی دریافتی را وارد کنید</small>
 </div>
+<section class="panel">
+ <form id="paymentForm">
+  <input type="hidden" id="editId">
+
+  <div class="field">
+   <label>تاریخ پرداخت</label>
+   <div class="date-grid">
+    <select class="date-select" id="payYear" aria-label="سال"></select>
+    <select class="date-select" id="payMonth" aria-label="ماه"></select>
+    <select class="date-select" id="payDay" aria-label="روز"></select>
+   </div>
+   <div class="date-hint">سال، ماه و روز را از فهرست انتخاب کنید.</div>
+  </div>
+
+  <div class="field">
+   <label for="payAmount">مبلغ دریافتی</label>
+   <input id="payAmount" type="number" min="0.01" step="0.01" placeholder="مثلاً 15000" required>
+  </div>
+
+  <div class="field">
+   <label for="payNote">یادداشت (اختیاری)</label>
+   <textarea id="payNote" placeholder="مثلاً پرداخت هفته اول..."></textarea>
+  </div>
+
+  <button class="btn primary full" id="submitPayment" type="submit">＋ ثبت پرداخت</button>
+  <button class="btn secondary full hidden" id="cancelEdit" type="button" style="margin-top:8px">لغو ویرایش</button>
+ </form>
+</section>
+
+<div class="section-head"><h2>گزارش هفتگی</h2><small>از تاریخ شروع کار</small></div>
+<div id="weeklyList"></div>
+
+<div class="section-head"><h2>تاریخچه پرداخت‌ها</h2><small id="historyCount">0 پرداخت</small></div>
+<section class="panel" id="historyList"></section>
+
+<div class="section-head"><h2>تنظیمات و پشتیبان</h2></div>
+<section class="panel">
+ <div class="field">
+  <label>تاریخ شروع کار</label>
+  <div class="date-grid">
+   <select class="date-select" id="startYear" aria-label="سال شروع"></select>
+   <select class="date-select" id="startMonth" aria-label="ماه شروع"></select>
+   <select class="date-select" id="startDay" aria-label="روز شروع"></select>
+  </div>
+ </div>
+ <button class="btn gold full" id="saveStart" type="button">ذخیره تاریخ شروع کار</button>
+ <hr>
+ <div class="actions">
+  <button class="btn secondary" id="backupBtn" type="button">⬇ دریافت پشتیبان</button>
+  <button class="btn secondary" id="restoreBtn" type="button">⬆ بازیابی پشتیبان</button>
+ </div>
+ <input type="file" id="restoreFile" accept=".json,application/json" class="hidden">
+ <p class="notice">اطلاعات در حافظه همین گوشی ذخیره می‌شود. برای انتقال به گوشی دیگر، نسخه پشتیبان بگیرید.</p>
+</section>
+
+<div class="footer">دفتر معاش · ساده، دقیق و همیشه همراه شما</div>
+</div>
+
 <div id="toast"></div>
 
 <script>
 "use strict";
 
-const STORAGE_KEY = "salaryBook_v3_data";
-const $ = id => document.getElementById(id);
-
-let data = loadData();
+const STORAGE_KEY="salaryBook_v3_data";
+const MONTHS=["حمل","ثور","جوزا","سرطان","اسد","سنبله","میزان","عقرب","قوس","جدی","دلو","حوت"];
+const $=id=>document.getElementById(id);
+let data=loadData();
 
 function loadData(){
  try{
-  const raw = localStorage.getItem(STORAGE_KEY);
-  if(!raw) return {startDate:"",payments:[]};
-  const parsed = JSON.parse(raw);
-  if(!parsed || !Array.isArray(parsed.payments)) throw new Error("Invalid data");
-  return {startDate:typeof parsed.startDate==="string"?parsed.startDate:"",payments:parsed.payments};
- }catch(e){
-  return {startDate:"",payments:[]};
- }
+  const raw=localStorage.getItem(STORAGE_KEY);
+  if(!raw)return {startDate:"",payments:[]};
+  const obj=JSON.parse(raw);
+  if(!obj||!Array.isArray(obj.payments))throw new Error();
+  return {
+   startDate:typeof obj.startDate==="string"?obj.startDate:"",
+   payments:obj.payments
+  };
+ }catch(e){return {startDate:"",payments:[]};}
 }
 function saveData(){localStorage.setItem(STORAGE_KEY,JSON.stringify(data));}
-function numberText(n){
- return Number(n||0).toLocaleString("en-US",{maximumFractionDigits:2});
-}
-function parseISO(s){
- const p=s.split("-").map(Number);
- return new Date(Date.UTC(p[0],p[1]-1,p[2]));
-}
+function num(n){return Number(n||0).toLocaleString("en-US",{maximumFractionDigits:2});}
 function isoDate(d){
  return d.getUTCFullYear()+"-"+String(d.getUTCMonth()+1).padStart(2,"0")+"-"+String(d.getUTCDate()).padStart(2,"0");
+}
+function fromISO(s){
+ const a=s.split("-").map(Number);
+ return new Date(Date.UTC(a[0],a[1]-1,a[2]));
 }
 function jalaliParts(date){
  const parts=new Intl.DateTimeFormat("en-US-u-ca-persian-nu-latn",{
   year:"numeric",month:"numeric",day:"numeric",timeZone:"UTC"
  }).formatToParts(date);
- const get=t=>Number(parts.find(p=>p.type===t).value);
+ const get=t=>Number(parts.find(x=>x.type===t).value);
  return {y:get("year"),m:get("month"),d:get("day")};
 }
 function jalaliText(iso){
  if(!iso)return "تعیین نشده";
- const p=jalaliParts(parseISO(iso));
+ const p=jalaliParts(fromISO(iso));
  return p.y+"/"+String(p.m).padStart(2,"0")+"/"+String(p.d).padStart(2,"0");
 }
-function parseJalali(value){
- const cleaned=String(value).trim().replace(/-/g,"/").replace(/\./g,"/");
- const m=cleaned.match(/^(\d{4})\/(\d{1,2})\/(\d{1,2})$/);
- if(!m)return null;
- const y=Number(m[1]),mo=Number(m[2]),day=Number(m[3]);
- if(y<1300||y>1600||mo<1||mo>12||day<1||day>31)return null;
+function jalaliToISO(y,m,d){
+ y=Number(y);m=Number(m);d=Number(d);
+ if(!y||m<1||m>12||d<1||d>31)return null;
  const start=Date.UTC(y+621,2,1);
  for(let i=0;i<370;i++){
-  const d=new Date(start+i*86400000);
-  const p=jalaliParts(d);
-  if(p.y===y&&p.m===mo&&p.d===day)return isoDate(d);
+  const date=new Date(start+i*86400000);
+  const p=jalaliParts(date);
+  if(p.y===y&&p.m===m&&p.d===d)return isoDate(date);
  }
  return null;
+}
+function daysInJalaliMonth(y,m){
+ let count=0;
+ for(let d=1;d<=31;d++){
+  if(jalaliToISO(y,m,d))count=d;
+  else if(count)break;
+ }
+ return count;
 }
 function todayISO(){
  const d=new Date();
  return isoDate(new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())));
 }
-function weekIndex(iso){
- if(!data.startDate||iso<data.startDate)return -1;
- return Math.floor((parseISO(iso)-parseISO(data.startDate))/604800000);
+function toast(message){
+ const el=$("toast");
+ el.textContent=message;
+ el.classList.add("show");
+ setTimeout(()=>el.classList.remove("show"),2300);
 }
-function weekStart(index){
- const d=parseISO(data.startDate);
- d.setUTCDate(d.getUTCDate()+index*7);
- return isoDate(d);
-}
-function weekEnd(index){
- const d=parseISO(weekStart(index));
- d.setUTCDate(d.getUTCDate()+6);
- return isoDate(d);
-}
-function escapeHTML(value){
- return String(value??"").replace(/[&<>"']/g,c=>({
+function escapeHTML(s){
+ return String(s??"").replace(/[&<>"']/g,c=>({
   "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
  }[c]));
 }
-function toast(message){
- const el=$("toast");el.textContent=message;el.classList.add("show");
- setTimeout(()=>el.classList.remove("show"),2200);
+
+/* Date selector setup */
+function setupPicker(prefix,initialISO){
+ const yEl=$(prefix+"Year"),mEl=$(prefix+"Month"),dEl=$(prefix+"Day");
+ const current=jalaliParts(fromISO(initialISO||todayISO()));
+ const first=Math.max(1300,current.y-12);
+ const last=Math.max(1450,current.y+8);
+ yEl.innerHTML="";
+ for(let y=first;y<=last;y++){
+  const o=document.createElement("option");
+  o.value=y;o.textContent=String(y);yEl.appendChild(o);
+ }
+ mEl.innerHTML="";
+ MONTHS.forEach((name,i)=>{
+  const o=document.createElement("option");
+  o.value=i+1;o.textContent=name;mEl.appendChild(o);
+ });
+ yEl.value=current.y;
+ mEl.value=current.m;
+ fillDays(prefix,current.d);
+ yEl.addEventListener("change",()=>fillDays(prefix,Number(dEl.value)||1));
+ mEl.addEventListener("change",()=>fillDays(prefix,Number(dEl.value)||1));
 }
-function paymentTotal(){
- return data.payments.reduce((sum,p)=>sum+Number(p.amount||0),0);
+function fillDays(prefix,preferred){
+ const y=Number($(prefix+"Year").value);
+ const m=Number($(prefix+"Month").value);
+ const dEl=$(prefix+"Day");
+ const max=daysInJalaliMonth(y,m);
+ const old=Number(preferred)||1;
+ dEl.innerHTML="";
+ for(let d=1;d<=max;d++){
+  const o=document.createElement("option");
+  o.value=d;o.textContent=String(d);dEl.appendChild(o);
+ }
+ dEl.value=Math.min(old,max);
 }
+function setPicker(prefix,iso){
+ const p=jalaliParts(fromISO(iso));
+ $(prefix+"Year").value=p.y;
+ $(prefix+"Month").value=p.m;
+ fillDays(prefix,p.d);
+ $(prefix+"Day").value=p.d;
+}
+function pickerISO(prefix){
+ return jalaliToISO(
+  $(prefix+"Year").value,
+  $(prefix+"Month").value,
+  $(prefix+"Day").value
+ );
+}
+
+/* Weekly calculations */
+function weekIndex(iso){
+ if(!data.startDate||iso<data.startDate)return -1;
+ return Math.floor((fromISO(iso)-fromISO(data.startDate))/604800000);
+}
+function weekStart(i){
+ const d=fromISO(data.startDate);
+ d.setUTCDate(d.getUTCDate()+i*7);
+ return isoDate(d);
+}
+function weekEnd(i){
+ const d=fromISO(weekStart(i));
+ d.setUTCDate(d.getUTCDate()+6);
+ return isoDate(d);
+}
+function total(){
+ return data.payments.reduce((s,p)=>s+Number(p.amount||0),0);
+}
+
+/* Render screen */
 function render(){
- $("todayText").textContent="امروز<br>"+jalaliText(todayISO());
- $("grandTotal").textContent=numberText(paymentTotal());
- $("paymentCount").textContent=numberText(data.payments.length);
+ const today=todayISO();
+ $("todayText").innerHTML="امروز<br>"+jalaliText(today);
+ $("grandTotal").textContent=num(total());
+ $("paymentCount").textContent=num(data.payments.length);
 
  if(!data.startDate){
   $("weekCount").textContent="0";
   $("unpaidCount").textContent="0";
-  $("weeklyList").innerHTML='<section class="panel empty-state"><b>📆</b>برای آغاز گزارش، تاریخ شروع کار را در تنظیمات وارد کنید.</section>';
+  $("weeklyList").innerHTML='<section class="panel empty"><b>📆</b>تاریخ شروع کار را در تنظیمات انتخاب و ذخیره کنید.</section>';
  }else{
-  const current=Math.max(0,weekIndex(todayISO()));
-  const lastPayment=data.payments.reduce((max,p)=>Math.max(max,weekIndex(p.date)),0);
-  const maxWeek=Math.max(current,lastPayment,0);
-  const totals={};
+  const current=Math.max(0,weekIndex(today));
+  const sums={};
   data.payments.forEach(p=>{
    const w=weekIndex(p.date);
-   if(w>=0)totals[w]=(totals[w]||0)+Number(p.amount||0);
+   if(w>=0)sums[w]=(sums[w]||0)+Number(p.amount||0);
   });
   let empty=0;
-  for(let i=0;i<=current;i++)if(!totals[i])empty++;
-  $("weekCount").textContent=numberText(current+1);
-  $("unpaidCount").textContent=numberText(empty);
+  for(let i=0;i<=current;i++)if(!sums[i])empty++;
+  $("weekCount").textContent=num(current+1);
+  $("unpaidCount").textContent=num(empty);
+  const last=data.payments.reduce((max,p)=>Math.max(max,weekIndex(p.date)),0);
+  const max=Math.max(current,last,0);
+  const highest=Math.max(1,...Object.values(sums));
   let html="";
-  for(let i=maxWeek;i>=0;i--){
-   const amount=totals[i]||0;
-   if(!amount&&i>current)continue;
+  for(let i=max;i>=0;i--){
+   const amount=sums[i]||0;
+   if(i>current&&!amount)continue;
+   const count=data.payments.filter(p=>weekIndex(p.date)===i).length;
+   const width=amount?Math.max(3,amount/highest*100):0;
    html+=`<div class="week">
     <div class="week-top">
-     <div><div class="week-name">هفته ${numberText(i+1)}</div>
+     <div><div class="week-name">هفته ${num(i+1)}</div>
      <div class="week-date">${jalaliText(weekStart(i))} تا ${jalaliText(weekEnd(i))}</div></div>
-     <div class="week-amount">${numberText(amount)}</div>
+     <div class="week-amount">${num(amount)}</div>
     </div>
+    <div class="bar-track"><div class="bar-fill" style="width:${width}%"></div></div>
     <div class="week-bottom">
      <span class="pill ${amount?"":"empty"}">${amount?"دارای پرداخت":"بدون پرداخت"}</span>
-     <small style="color:var(--muted)">${numberText(data.payments.filter(p=>weekIndex(p.date)===i).length)} پرداخت</small>
+     <small style="color:var(--muted)">${num(count)} پرداخت</small>
     </div>
    </div>`;
   }
@@ -338,54 +421,68 @@ function render(){
  }
 
  const sorted=[...data.payments].sort((a,b)=>b.date.localeCompare(a.date));
- $("historyCount").textContent=numberText(sorted.length)+" پرداخت";
+ $("historyCount").textContent=num(sorted.length)+" پرداخت";
  if(!sorted.length){
-  $("historyList").innerHTML='<div class="empty-state"><b>🧾</b>هنوز پرداختی ثبت نشده است.</div>';
+  $("historyList").innerHTML='<div class="empty"><b>🧾</b>هنوز پرداختی ثبت نشده است.</div>';
  }else{
   $("historyList").innerHTML=sorted.map(p=>`
    <div class="payment">
     <div style="min-width:0;flex:1">
      <div class="payment-title">${escapeHTML(p.note||"پرداخت ثبت‌شده")}</div>
-     <div class="payment-sub">${jalaliText(p.date)} · هفته ${numberText(weekIndex(p.date)+1)}</div>
+     <div class="payment-sub">${jalaliText(p.date)} · هفته ${num(weekIndex(p.date)+1)}</div>
      <div class="payment-actions">
-      <button class="mini" onclick="editPayment('${escapeHTML(p.id)}')">ویرایش</button>
-      <button class="mini" onclick="deletePayment('${escapeHTML(p.id)}')">حذف</button>
+      <button class="mini" data-edit="${escapeHTML(p.id)}">ویرایش</button>
+      <button class="mini" data-delete="${escapeHTML(p.id)}">حذف</button>
      </div>
     </div>
-    <div class="payment-amount">${numberText(p.amount)}</div>
+    <div class="payment-amount">${num(p.amount)}</div>
    </div>`).join("");
  }
- $("startDate").value=data.startDate?jalaliText(data.startDate):"";
+ $("historyList").querySelectorAll("[data-edit]").forEach(b=>{
+  b.addEventListener("click",()=>editPayment(b.dataset.edit));
+ });
+ $("historyList").querySelectorAll("[data-delete]").forEach(b=>{
+  b.addEventListener("click",()=>deletePayment(b.dataset.delete));
+ });
+ if(data.startDate)setPicker("start",data.startDate);
 }
-function resetPaymentForm(){
+
+/* Payment form */
+function resetForm(){
  $("paymentForm").reset();
  $("editId").value="";
+ setPicker("pay",todayISO());
  $("submitPayment").textContent="＋ ثبت پرداخت";
  $("cancelEdit").classList.add("hidden");
 }
 $("paymentForm").addEventListener("submit",e=>{
  e.preventDefault();
- const date=parseJalali($("payDate").value);
+ const date=pickerISO("pay");
  const amount=Number($("payAmount").value);
  const note=$("payNote").value.trim();
  const editId=$("editId").value;
- if(!date){toast("تاریخ پرداخت را درست وارد کنید.");return;}
+ if(!date){toast("تاریخ انتخاب‌شده معتبر نیست.");return;}
  if(!Number.isFinite(amount)||amount<=0){toast("مبلغ باید بیشتر از صفر باشد.");return;}
- if(!data.startDate){toast("اول تاریخ شروع کار را در تنظیمات ثبت کنید.");return;}
- if(date<data.startDate){toast("تاریخ پرداخت نباید قبل از شروع کار باشد.");return;}
+ if(!data.startDate){toast("اول تاریخ شروع کار را ذخیره کنید.");return;}
+ if(date<data.startDate){toast("تاریخ پرداخت قبل از شروع کار است.");return;}
+ if(date>todayISO()){toast("تاریخ پرداخت نمی‌تواند در آینده باشد.");return;}
  if(editId){
   const p=data.payments.find(x=>x.id===editId);
   if(p){p.date=date;p.amount=amount;p.note=note;}
  }else{
-  data.payments.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),date,amount,note});
+  data.payments.push({
+   id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),
+   date,amount,note
+  });
  }
- saveData();resetPaymentForm();render();toast(editId?"پرداخت ویرایش شد.":"پرداخت ثبت شد.");
+ saveData();resetForm();render();
+ toast(editId?"پرداخت ویرایش شد.":"پرداخت ثبت شد.");
 });
 function editPayment(id){
  const p=data.payments.find(x=>x.id===id);
  if(!p)return;
  $("editId").value=p.id;
- $("payDate").value=jalaliText(p.date);
+ setPicker("pay",p.date);
  $("payAmount").value=p.amount;
  $("payNote").value=p.note||"";
  $("submitPayment").textContent="ذخیره تغییرات";
@@ -397,38 +494,57 @@ function deletePayment(id){
  data.payments=data.payments.filter(p=>p.id!==id);
  saveData();render();toast("پرداخت حذف شد.");
 }
-$("cancelEdit").addEventListener("click",resetPaymentForm);
+$("cancelEdit").addEventListener("click",resetForm);
+
+/* Start date */
 $("saveStart").addEventListener("click",()=>{
- const date=parseJalali($("startDate").value);
- if(!date){toast("تاریخ شروع را به شکل 1405/01/01 وارد کنید.");return;}
+ const date=pickerISO("start");
+ if(!date){toast("تاریخ شروع معتبر نیست.");return;}
  if(date>todayISO()){toast("تاریخ شروع نمی‌تواند در آینده باشد.");return;}
- if(data.payments.some(p=>p.date<date)){toast("تاریخ شروع نباید بعد از تاریخ پرداخت‌های ثبت‌شده باشد.");return;}
- data.startDate=date;saveData();render();toast("تاریخ شروع کار ذخیره شد.");
+ if(data.payments.some(p=>p.date<date)){
+  toast("تاریخ شروع نباید بعد از پرداخت‌های قبلی باشد.");return;
+ }
+ data.startDate=date;
+ saveData();render();toast("تاریخ شروع کار ذخیره شد.");
 });
+
+/* Backup and restore */
 $("backupBtn").addEventListener("click",()=>{
  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
  const url=URL.createObjectURL(blob);
  const a=document.createElement("a");
  a.href=url;a.download="salary-backup.json";a.click();
- URL.revokeObjectURL(url);toast("نسخه پشتیبان آماده شد.");
+ URL.revokeObjectURL(url);
+ toast("نسخه پشتیبان آماده شد.");
 });
 $("restoreBtn").addEventListener("click",()=>$("restoreFile").click());
 $("restoreFile").addEventListener("change",async e=>{
- const file=e.target.files[0];if(!file)return;
+ const file=e.target.files[0];
+ if(!file)return;
  try{
   const obj=JSON.parse(await file.text());
   if(!obj||!Array.isArray(obj.payments)||typeof obj.startDate!=="string")throw new Error();
-  const valid=obj.payments.every(p=>p&&typeof p.date==="string"&&Number.isFinite(Number(p.amount))&&Number(p.amount)>0&&typeof p.id==="string");
+  const valid=obj.payments.every(p=>
+   p&&typeof p.id==="string"&&typeof p.date==="string"&&
+   Number.isFinite(Number(p.amount))&&Number(p.amount)>0&&
+   /^\d{4}-\d{2}-\d{2}$/.test(p.date)
+  );
   if(!valid)throw new Error();
   if(!confirm("اطلاعات فعلی با نسخه پشتیبان جایگزین شود؟"))return;
   data={startDate:obj.startDate,payments:obj.payments};
-  saveData();resetPaymentForm();render();toast("پشتیبان بازیابی شد.");
+  saveData();resetForm();render();toast("پشتیبان بازیابی شد.");
  }catch(err){toast("فایل پشتیبان معتبر نیست.");}
  e.target.value="";
 });
+
+/* Initial setup */
+setupPicker("pay",todayISO());
+setupPicker("start",data.startDate||todayISO());
 render();
 if("serviceWorker" in navigator){
- window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
+ window.addEventListener("load",()=>{
+  navigator.serviceWorker.register("./sw.js").catch(()=>{});
+ });
 }
 </script>
 </body>
