@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#080e19">
-<title>نگار | مدیریت معاش و قرضه</title>
+<title>نگار | مدیریت مالی</title>
 <link rel="manifest" href="./manifest.json">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
@@ -68,16 +68,19 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}
 .action-btn.salary{background:linear-gradient(110deg,#9dffdf,#60d9c3);color:#071b19}
 .action-btn.loan{background:linear-gradient(110deg,#f4d9a5,#c9985e);color:#271a0a}
 .action-btn.repay{grid-column:1/-1;background:#ffffff0b;border:1px solid #6fffd044;color:var(--mint)}
+.action-btn.office{grid-column:1/-1;background:linear-gradient(110deg,#b8c9ff,#849be8);color:#111a35}
 .payment-list,.loan-list,.week-list{display:flex;flex-direction:column;gap:9px}
 .payment,.loan-item{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid var(--line);border-radius:16px;background:#ffffff05}
 .symbol{width:37px;height:37px;border-radius:13px;display:grid;place-items:center;background:#72f4d113;color:var(--mint);font-size:17px;flex-shrink:0}
 .symbol.loan-symbol{background:#e8c78a16;color:var(--gold)}
+.symbol.office-symbol{background:#9aafff18;color:#aebeff}
 .info{flex:1;min-width:0}
 .info strong{font-size:12px;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .info small{display:block;color:var(--muted);font-size:10px;margin-top:3px}
 .side{text-align:left}
 .side strong{direction:ltr;display:block;font-size:13px;color:var(--mint)}
 .side .debt{color:var(--gold)}
+.side .office-amount{color:#b7c5ff}
 .item-actions{display:flex;gap:5px;margin-top:5px}
 .mini-btn{background:none;border:0;color:var(--muted);font-size:10px;padding:2px 4px}
 .mini-btn.delete{color:var(--red)}
@@ -107,6 +110,7 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}
 .field textarea{resize:vertical;min-height:65px}
 .date-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}
 .save-btn{width:100%;border:0;border-radius:14px;padding:13px;background:linear-gradient(110deg,#9dffdf,#60d9c3);color:#071b19;font-weight:800;margin-top:8px}
+.save-btn.office-save{background:linear-gradient(110deg,#b8c9ff,#849be8);color:#111a35}
 .secondary-btn{width:100%;border:1px solid var(--line);background:#ffffff08;color:#dce9f4;border-radius:13px;padding:12px;margin-top:9px;font-size:12px}
 .note{font-size:10px;color:var(--muted);line-height:1.9;margin-top:9px}
 .toast{position:fixed;z-index:20;bottom:95px;left:50%;transform:translate(-50%,15px);opacity:0;pointer-events:none;background:#d9fff2;color:#09211b;padding:10px 17px;border-radius:12px;font-size:11px;font-weight:700;transition:.25s;white-space:nowrap}
@@ -155,6 +159,7 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}
  <button class="action-btn salary" onclick="openSalary()">＋ ثبت معاش</button>
  <button class="action-btn loan" onclick="openLoan()">＋ گرفتن قرضه</button>
  <button class="action-btn repay" onclick="openRepayment()">↘ ثبت پرداخت قرضه</button>
+ <button class="action-btn office" onclick="openOfficeExpense()">＋ ثبت مصرف شخصی دفتر</button>
 </div>
 
 <div class="section-head"><h2>حساب قرضه‌ها</h2><span id="loanCount">0 قرضه</span></div>
@@ -165,6 +170,18 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}
   <div class="stat"><small>باقی‌مانده</small><strong id="loanBalance">0</strong></div>
  </div>
  <div class="payment-list" id="loanList"></div>
+</section>
+
+<!-- Office expenses: independent account -->
+<div class="section-head"><h2>مصارف شخصی دفتر</h2><span id="officeExpenseCount">0 مورد</span></div>
+<section class="panel">
+ <div class="stat" style="margin-bottom:12px">
+  <div class="stat-icon">▤</div>
+  <small>مجموع پول شخصی مصرف‌شده برای دفتر</small>
+  <strong id="officeExpenseTotal" style="color:#b7c5ff;font-size:24px">0</strong>
+  <small style="margin-top:5px">این مبلغ جدا از معاش و قرضه محاسبه می‌شود.</small>
+ </div>
+ <div class="payment-list" id="officeExpenseList"></div>
 </section>
 
 <div class="section-head"><h2>تاریخچه معاش</h2><span id="salaryCount">0 مورد</span></div>
@@ -217,15 +234,26 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}
  <p class="note">مبلغ بازپرداخت از معاش ناخالص کم نمی‌شود؛ در گزارش، معاش ناخالص و معاش خالص جداگانه نمایش داده می‌شوند.</p>
 </div></div>
 
+<!-- Office expense modal -->
+<div class="modal-backdrop" id="officeExpenseModal" onclick="backdropClose(event,'officeExpenseModal')"><div class="modal">
+ <div class="modal-head"><h3 id="officeExpenseTitle">ثبت مصرف شخصی دفتر</h3><button class="close" onclick="closeModal('officeExpenseModal')">×</button></div>
+ <input type="hidden" id="officeExpenseEditId">
+ <div class="field"><label>مبلغ مصرف (افغانی)</label><input id="officeExpenseAmount" type="number" min="0" step="0.01" inputmode="decimal" placeholder="مثلاً 500"></div>
+ <div class="field"><label>تاریخ مصرف</label><div class="date-grid"><select id="officeDay"></select><select id="officeMonth"></select><select id="officeYear"></select></div></div>
+ <div class="field"><label>توضیحات مصرف</label><textarea id="officeExpenseNote" placeholder="مثلاً خرید لوازم یا پرداخت هزینه دفتر"></textarea></div>
+ <button class="save-btn office-save" onclick="saveOfficeExpense()">ذخیره مصرف دفتر</button>
+ <p class="note">این ثبت فقط برای نگهداری حساب پول شخصی مصرف‌شده برای دفتر است و معاش یا قرضه شما را تغییر نمی‌دهد.</p>
+</div></div>
+
 <!-- Settings modal -->
 <div class="modal-backdrop" id="settingsModal" onclick="backdropClose(event,'settingsModal')"><div class="modal">
  <div class="modal-head"><h3>تنظیمات و پشتیبان‌گیری</h3><button class="close" onclick="closeModal('settingsModal')">×</button></div>
  <div class="field"><label>تاریخ شروع کار</label><div class="date-grid"><select id="startDay"></select><select id="startMonth"></select><select id="startYear"></select></div></div>
  <button class="save-btn" onclick="saveStartDate()">ذخیره تاریخ شروع</button>
  <button class="secondary-btn" onclick="exportData()">↓ دریافت نسخه پشتیبان</button>
- <button class="secondary-btn" onclick="document.getElementById('restoreFile').click()">↑ بازیابی نسخه پشتیبان</button>
+ <button class="secondary-btn" onclick="$('restoreFile').click()">↑ بازیابی نسخه پشتیبان</button>
  <input type="file" id="restoreFile" accept=".json,application/json" hidden onchange="importData(event)">
- <p class="note">فایل پشتیبان شامل معاش‌ها، قرضه‌ها و تمام بازپرداخت‌ها است. اطلاعات روی همین دستگاه ذخیره می‌شود. پاک‌کردن داده‌های مرورگر ممکن است اطلاعات را از بین ببرد.</p>
+ <p class="note">فایل پشتیبان شامل معاش‌ها، قرضه‌ها، بازپرداخت‌ها و مصارف شخصی دفتر است. اطلاعات روی همین دستگاه ذخیره می‌شود. پاک‌کردن داده‌های مرورگر ممکن است اطلاعات را از بین ببرد.</p>
 </div></div>
 <div class="toast" id="toast"></div>
 
@@ -242,9 +270,10 @@ function loadData(){
    startDate:d.startDate||"",
    payments:Array.isArray(d.payments)?d.payments:[],
    loans:Array.isArray(d.loans)?d.loans:[],
-   repayments:Array.isArray(d.repayments)?d.repayments:[]
+   repayments:Array.isArray(d.repayments)?d.repayments:[],
+   officeExpenses:Array.isArray(d.officeExpenses)?d.officeExpenses:[]
   };
- }catch(e){return {startDate:"",payments:[],loans:[],repayments:[]}}
+ }catch(e){return {startDate:"",payments:[],loans:[],repayments:[],officeExpenses:[]}}
 }
 function persist(){localStorage.setItem(STORAGE_KEY,JSON.stringify(data))}
 function pad(n){return String(n).padStart(2,"0")}
@@ -391,12 +420,85 @@ function deleteRepayment(id){
  data.repayments=data.repayments.filter(r=>r.id!==id);persist();render();toast("بازپرداخت حذف شد");
 }
 
+/* Office expense functions: kept separate from salary and loans */
+function openOfficeExpense(id){
+ $("officeExpenseEditId").value="";
+ $("officeExpenseTitle").textContent="ثبت مصرف شخصی دفتر";
+ $("officeExpenseAmount").value="";
+ $("officeExpenseNote").value="";
+ fillDate("office",todayISO());
+
+ if(id){
+  const item=data.officeExpenses.find(x=>x.id===id);
+  if(!item)return;
+  $("officeExpenseEditId").value=id;
+  $("officeExpenseTitle").textContent="ویرایش مصرف دفتر";
+  $("officeExpenseAmount").value=item.amount;
+  $("officeExpenseNote").value=item.note||"";
+  fillDate("office",item.date);
+ }
+ showModal("officeExpenseModal");
+}
+function saveOfficeExpense(){
+ const amount=Number($("officeExpenseAmount").value);
+ if(!Number.isFinite(amount)||amount<=0){
+  toast("مبلغ مصرف را درست وارد کنید");return;
+ }
+ const id=$("officeExpenseEditId").value;
+ const item={
+  id:id||uid(),
+  amount,
+  date:readDate("office"),
+  note:$("officeExpenseNote").value.trim()
+ };
+ if(id)data.officeExpenses=data.officeExpenses.map(x=>x.id===id?item:x);
+ else data.officeExpenses.push(item);
+
+ persist();
+ closeModal("officeExpenseModal");
+ render();
+ toast("مصرف دفتر ذخیره شد");
+}
+function deleteOfficeExpense(id){
+ if(!confirm("این مصرف دفتر حذف شود؟"))return;
+ data.officeExpenses=data.officeExpenses.filter(x=>x.id!==id);
+ persist();
+ render();
+ toast("مصرف دفتر حذف شد");
+}
+function renderOfficeExpenses(){
+ const list=[...data.officeExpenses].sort((a,b)=>b.date.localeCompare(a.date));
+ $("officeExpenseTotal").textContent=money(totalOf(data.officeExpenses));
+ $("officeExpenseCount").textContent=`${list.length} مورد`;
+
+ $("officeExpenseList").innerHTML=list.length?list.map(item=>`
+  <div class="payment">
+   <div class="symbol office-symbol">▤</div>
+   <div class="info">
+    <strong>${escapeHTML(item.note||"مصرف شخصی دفتر")}</strong>
+    <small>${fmtDate(item.date)}</small>
+   </div>
+   <div class="side">
+    <strong class="office-amount">${money(item.amount)}</strong>
+    <div class="item-actions">
+     <button class="mini-btn" onclick="openOfficeExpense('${item.id}')">ویرایش</button>
+     <button class="mini-btn delete" onclick="deleteOfficeExpense('${item.id}')">حذف</button>
+    </div>
+   </div>
+  </div>
+ `).join(""):`<div class="empty">هنوز مصرفی برای دفتر ثبت نشده است.<br>با ثبت اولین مصرف، تاریخچه آن اینجا نمایش داده می‌شود.</div>`;
+}
+
 function render(){
  const gross=totalOf(data.payments),repaid=totalOf(data.repayments);
  $("grossTotal").textContent=money(gross);
  $("repayTotal").textContent=money(repaid);
  $("netTotal").innerHTML=`${money(gross-repaid)} <span class="currency">افغانی</span>`;
- renderLoans();renderSalaries();renderRepayments();renderWeeks();
+ renderLoans();
+ renderSalaries();
+ renderRepayments();
+ renderOfficeExpenses();
+ renderWeeks();
 }
 function renderLoans(){
  const borrowed=totalOf(data.loans),paid=totalOf(data.repayments);
@@ -475,9 +577,15 @@ function importData(e){
  reader.onload=()=>{
   try{
    const d=JSON.parse(reader.result);
-   if(!Array.isArray(d.payments)||!Array.isArray(d.loans||[])||!Array.isArray(d.repayments||[]))throw new Error("invalid");
+   if(!Array.isArray(d.payments)||!Array.isArray(d.loans||[])||!Array.isArray(d.repayments||[])||!Array.isArray(d.officeExpenses||[]))throw new Error("invalid");
    if(!confirm("تمام اطلاعات فعلی با اطلاعات فایل پشتیبان جایگزین شود؟"))return;
-   data={startDate:d.startDate||"",payments:d.payments,loans:d.loans||[],repayments:d.repayments||[]};
+   data={
+    startDate:d.startDate||"",
+    payments:d.payments,
+    loans:d.loans||[],
+    repayments:d.repayments||[],
+    officeExpenses:d.officeExpenses||[]
+   };
    persist();render();closeModal("settingsModal");toast("بازیابی اطلاعات انجام شد");
   }catch(err){toast("فایل پشتیبان معتبر نیست")}
   e.target.value="";
