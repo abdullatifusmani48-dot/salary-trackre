@@ -3,600 +3,247 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#080e19">
-<title>نگار | مدیریت مالی</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#031b14">
 <link rel="manifest" href="./manifest.json">
+<title>نگار | مدیریت مالی</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
-:root{
---bg:#080e19;--panel:#101a29;--line:#ffffff16;--white:#f2f6fc;
---muted:#8b9bb0;--mint:#6fffd0;--gold:#e8c78a;--red:#ff8193;
-}
+:root{--bg:#03140f;--green:#073b2b;--green2:#10543a;--gold:#e7c36c;--gold2:#fff0b4;--cream:#f6edcf;--muted:#b8c9b8;--line:#c6a454}
 *{box-sizing:border-box}
-body{
-margin:0;background:radial-gradient(ellipse at 85% 0%,#1d707733,transparent 38%),
-radial-gradient(ellipse at 0% 30%,#59488b22,transparent 34%),var(--bg);
-color:var(--white);font-family:"Vazirmatn",Tahoma,sans-serif;min-height:100vh;padding-bottom:105px
-}
-button,input,select,textarea{font:inherit}button{cursor:pointer}
-.app{width:min(100%,680px);margin:auto;padding:20px 17px}
-.topbar{display:flex;align-items:center;justify-content:space-between;margin:8px 2px 25px}
-.brand{display:flex;align-items:center;gap:11px}
-.logo{width:43px;height:43px;border-radius:15px;display:grid;place-items:center;color:#071b1a;font-size:22px;font-weight:900;background:linear-gradient(145deg,#a5ffe5,#47cbb8 60%,#d7c18d);box-shadow:0 5px 28px #54e6c32a}
-.brand h1{font-size:18px;margin:0;font-weight:800}
-.brand small{display:block;color:var(--muted);font-size:10px}
-.icon-btn{width:39px;height:39px;border:1px solid var(--line);border-radius:13px;color:#d6e5f1;background:#ffffff08}
-.hero{position:relative;overflow:hidden;padding:23px 22px 20px;border-radius:30px;background:linear-gradient(135deg,#17343b,#17263a 48%,#24243b);border:1px solid #b4f6e326;box-shadow:0 22px 65px #0005,inset 0 1px #ffffff19}
-.hero:before{content:"";position:absolute;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle,#61f5cb24,transparent 68%);left:-90px;top:-120px}
-.eyebrow{font-size:11px;color:var(--mint);letter-spacing:1px;font-weight:700}
-.hero-head{display:flex;justify-content:space-between;align-items:center;position:relative}
-.live{font-size:10px;color:#b5fce5;background:#7bffce13;border:1px solid #8affd42c;padding:5px 10px;border-radius:30px}
-.total-label{color:#b9c9d2;font-size:12px;margin-top:25px;position:relative}
-.total{direction:ltr;text-align:right;font-size:clamp(30px,8vw,43px);font-weight:800;letter-spacing:-1.5px;margin:4px 0 0;color:#f6fffc;position:relative;overflow-wrap:anywhere}
-.currency{font-size:13px;color:#b8d5d2;font-weight:500;margin-right:5px}
-.hero-foot{display:flex;justify-content:space-between;align-items:end;margin-top:23px;position:relative}
-.hero-foot small{display:block;color:#a9bdc5;font-size:10px}
-.hero-foot strong{font-size:14px;display:block;margin-top:4px}
-.hero-mark{font-size:10px;color:#c4e7dd;border:1px solid #b7f7e22c;padding:7px 10px;border-radius:12px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:14px 0 23px}
-.stat{padding:13px 10px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,#142236d9,#101a28e8);min-width:0}
-.stat-icon{font-size:16px;margin-bottom:7px}
-.stat small{display:block;color:var(--muted);font-size:10px}
-.stat strong{display:block;font-size:18px;margin-top:3px;direction:ltr;text-align:right;overflow-wrap:anywhere}
-.section-head{display:flex;justify-content:space-between;align-items:center;margin:24px 2px 12px}
-.section-head h2{font-size:15px;margin:0;font-weight:800}
-.section-head span{font-size:10px;color:var(--muted)}
-.panel{border:1px solid var(--line);background:linear-gradient(145deg,#111d2c,#0e1826);border-radius:23px;padding:16px;margin-bottom:13px;box-shadow:0 12px 35px #0002,inset 0 1px #ffffff07}
-.week-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.week-title{font-size:13px;font-weight:700}
-.week-sub{font-size:10px;color:var(--muted);margin-top:4px}
-.week-total{direction:ltr;text-align:left;font-size:20px;font-weight:800;color:var(--mint)}
-.net-line{display:flex;justify-content:space-between;margin-top:13px;padding-top:12px;border-top:1px solid var(--line);font-size:11px}
-.net-line span{color:var(--muted)}
-.net-line strong{direction:ltr}
-.progress{height:7px;background:#ffffff0b;border-radius:10px;overflow:hidden;margin:15px 0 8px}
-.progress i{display:block;height:100%;border-radius:10px;background:linear-gradient(90deg,#53d5c1,#b6f4c8,#e8c78a)}
-.progress-label{display:flex;justify-content:space-between;font-size:10px;color:var(--muted)}
-.chart{height:105px;display:flex;align-items:end;gap:8px;padding:13px 2px 0}
-.bar-wrap{height:100%;flex:1;display:flex;flex-direction:column;justify-content:end;align-items:center;gap:7px}
-.bar{width:min(100%,28px);height:4px;min-height:4px;border-radius:8px 8px 3px 3px;background:linear-gradient(180deg,#83ffe0,#3c9caa)}
-.bar.active{background:linear-gradient(180deg,#ffe3a9,#c58d55)}
-.bar-label{font-size:9px;color:var(--muted)}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:14px 0 23px}
-.action-btn{border:0;border-radius:16px;padding:14px 8px;font-size:12px;font-weight:800}
-.action-btn.salary{background:linear-gradient(110deg,#9dffdf,#60d9c3);color:#071b19}
-.action-btn.loan{background:linear-gradient(110deg,#f4d9a5,#c9985e);color:#271a0a}
-.action-btn.repay{grid-column:1/-1;background:#ffffff0b;border:1px solid #6fffd044;color:var(--mint)}
-.action-btn.office{grid-column:1/-1;background:linear-gradient(110deg,#b8c9ff,#849be8);color:#111a35}
-.payment-list,.loan-list,.week-list{display:flex;flex-direction:column;gap:9px}
-.payment,.loan-item{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid var(--line);border-radius:16px;background:#ffffff05}
-.symbol{width:37px;height:37px;border-radius:13px;display:grid;place-items:center;background:#72f4d113;color:var(--mint);font-size:17px;flex-shrink:0}
-.symbol.loan-symbol{background:#e8c78a16;color:var(--gold)}
-.symbol.office-symbol{background:#9aafff18;color:#aebeff}
-.info{flex:1;min-width:0}
-.info strong{font-size:12px;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.info small{display:block;color:var(--muted);font-size:10px;margin-top:3px}
-.side{text-align:left}
-.side strong{direction:ltr;display:block;font-size:13px;color:var(--mint)}
-.side .debt{color:var(--gold)}
-.side .office-amount{color:#b7c5ff}
-.item-actions{display:flex;gap:5px;margin-top:5px}
-.mini-btn{background:none;border:0;color:var(--muted);font-size:10px;padding:2px 4px}
-.mini-btn.delete{color:var(--red)}
-.loan-balance{font-size:10px;color:var(--gold);margin-top:4px}
-.empty{text-align:center;padding:22px 8px;color:var(--muted);font-size:12px;line-height:2}
-.week-row{display:flex;align-items:center;gap:10px;padding:12px;border-radius:15px;background:#ffffff05;border:1px solid #ffffff0a}
-.week-dot{width:8px;height:8px;border-radius:50%;background:var(--mint)}
-.week-row.no-pay .week-dot{background:#667386}
-.week-row div:nth-child(2){flex:1}
-.week-row strong{font-size:11px;display:block}
-.week-row small{font-size:9px;color:var(--muted)}
-.week-row b{font-size:12px;direction:ltr;color:#c5eadd}
-.bottom-nav{position:fixed;z-index:5;bottom:0;left:0;right:0;padding:10px 15px calc(10px + env(safe-area-inset-bottom));background:#0a1220ef;backdrop-filter:blur(20px);border-top:1px solid var(--line);display:flex;justify-content:center}
-.nav-inner{width:min(100%,600px);display:flex;justify-content:space-around}
-.nav-item{border:0;background:none;color:#718399;font-size:10px;display:flex;flex-direction:column;align-items:center;gap:4px}
-.nav-item span{font-size:18px}
-.nav-item.active{color:var(--mint)}
-.modal-backdrop{position:fixed;z-index:10;inset:0;background:#02060dc9;backdrop-filter:blur(8px);display:none;align-items:end;justify-content:center;padding:12px}
-.modal-backdrop.show{display:flex}
-.modal{width:min(100%,560px);max-height:90vh;overflow:auto;background:#111e2e;border:1px solid #c1f4df24;border-radius:27px;padding:20px;box-shadow:0 25px 90px #000b}
-.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px}
-.modal-head h3{margin:0;font-size:16px}
-.close{border:0;background:#ffffff0c;color:#d8e5ee;border-radius:10px;width:34px;height:34px;font-size:18px}
-.field{margin:13px 0}
-.field label{display:block;color:#a7b8c9;font-size:11px;margin-bottom:7px}
-.field input,.field textarea,.field select{width:100%;background:#091321;border:1px solid #ffffff17;color:#f2f7fc;padding:12px;border-radius:13px;outline:none;font-size:13px}
-.field textarea{resize:vertical;min-height:65px}
-.date-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}
-.save-btn{width:100%;border:0;border-radius:14px;padding:13px;background:linear-gradient(110deg,#9dffdf,#60d9c3);color:#071b19;font-weight:800;margin-top:8px}
-.save-btn.office-save{background:linear-gradient(110deg,#b8c9ff,#849be8);color:#111a35}
-.secondary-btn{width:100%;border:1px solid var(--line);background:#ffffff08;color:#dce9f4;border-radius:13px;padding:12px;margin-top:9px;font-size:12px}
-.note{font-size:10px;color:var(--muted);line-height:1.9;margin-top:9px}
-.toast{position:fixed;z-index:20;bottom:95px;left:50%;transform:translate(-50%,15px);opacity:0;pointer-events:none;background:#d9fff2;color:#09211b;padding:10px 17px;border-radius:12px;font-size:11px;font-weight:700;transition:.25s;white-space:nowrap}
-.toast.show{opacity:1;transform:translate(-50%,0)}
-@media(min-width:600px){.app{padding-top:28px}.hero{padding:28px}}
+body{margin:0;background:radial-gradient(ellipse at 50% -10%,#14563d,#061c14 45%,#020d09);color:var(--cream);font-family:Tahoma,Arial,sans-serif;min-height:100vh;padding-bottom:95px}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.wrap{max-width:760px;margin:auto;padding:0 14px}
+header{text-align:center;padding:25px 14px 15px;position:relative;overflow:hidden}
+header:before,header:after{content:"";position:absolute;width:220px;height:100px;border:1px solid #46b17b44;border-radius:50%;top:-45px;transform:rotate(-25deg)}
+header:before{right:-100px}header:after{left:-100px;transform:rotate(25deg)}
+.tools{position:absolute;top:22px;left:17px;right:17px;display:flex;justify-content:space-between;direction:ltr}
+.round{width:41px;height:41px;border:1px solid var(--line);border-radius:50%;background:linear-gradient(145deg,#174b35,#041a12);color:var(--gold2);font-size:19px}
+.emblem{width:91px;height:91px;border:2px solid var(--gold);border-radius:50%;margin:12px auto;background:radial-gradient(circle,#14563a,#03150f 70%);display:grid;place-items:center;position:relative;box-shadow:0 0 25px #d8ad4a45,inset 0 0 20px #d8ad4a25}
+.emblem:before{content:"♛";position:absolute;top:-23px;color:var(--gold);font-size:30px}
+.emblem span{font-size:48px;color:var(--gold2)}
+h1{font-size:34px;color:var(--gold2);margin:4px 0;text-shadow:0 0 14px #e2b94b66}
+.tagline{font-size:12px;color:#e9d99e}
+.ornament{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:19px auto;max-width:310px}
+.hero{position:relative;overflow:hidden;border:1px solid var(--gold);border-radius:27px;padding:21px 18px;background:linear-gradient(115deg,#073b29,#02140e 75%);box-shadow:0 0 24px #d6ad4b30,inset 0 0 28px #4cb78319;margin:10px 0 15px}
+.hero:after{content:"";position:absolute;width:210px;height:120px;left:-45px;top:8px;border:1px solid #d9b65b55;border-radius:50%;transform:rotate(-22deg)}
+.hero-label{color:var(--gold2);font-size:16px;position:relative}
+.hero-value{font-size:clamp(25px,7vw,39px);font-weight:bold;color:var(--gold2);margin:12px 0 4px;direction:ltr;text-align:right;position:relative;overflow-wrap:anywhere}
+.hero-sub{font-size:11px;color:var(--muted);position:relative}
+.hero-icon{position:absolute;left:20px;top:34px;font-size:49px;color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.tile{min-height:119px;padding:15px 13px;border:1px solid var(--gold);border-radius:21px;background:linear-gradient(145deg,#145237ed,#031b13);box-shadow:0 8px 20px #0007,inset 0 0 18px #e7c36c12;position:relative;overflow:hidden}
+.tile:after{content:"";position:absolute;width:110px;height:60px;left:-35px;top:-22px;border:1px solid #e9cc7b44;border-radius:50%;transform:rotate(-25deg)}
+.ico{font-size:27px;color:var(--gold);margin-bottom:8px}
+.name{font-size:12px;color:#e9dcae}
+.val{font-size:clamp(16px,4vw,22px);font-weight:bold;color:var(--gold2);margin-top:9px;direction:ltr;text-align:right;overflow-wrap:anywhere}
+.hint{font-size:10px;color:var(--muted);margin-top:4px}
+.section{margin:17px 0;border:1px solid #a98b4d99;border-radius:23px;background:linear-gradient(145deg,#072f21f2,#02120df7);padding:16px;box-shadow:0 8px 25px #0005}
+.head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:13px}
+h2{font-size:15px;color:var(--gold2);margin:0}
+.small{border:1px solid var(--line);border-radius:22px;padding:8px 12px;background:#0b3426;color:var(--gold2);font-size:11px}
+.actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.action{display:flex;align-items:center;gap:10px;text-align:right;padding:14px 12px;min-height:67px;border:1px solid var(--gold);border-radius:17px;background:linear-gradient(120deg,#164a34,#041a12);color:var(--gold2);box-shadow:0 5px 15px #0005}
+.action span:first-child{font-size:25px;color:var(--gold)}
+.action span:last-child{font-size:12px;font-weight:bold}
+.chart{height:145px;display:flex;align-items:end;gap:9px;padding:10px 4px 0;border-bottom:1px solid #8eaa8b55;direction:ltr}
+.barbox{flex:1;height:100%;display:flex;flex-direction:column;justify-content:end;align-items:center;gap:6px}
+.bar{width:min(27px,75%);min-height:3px;border-radius:8px 8px 2px 2px;background:linear-gradient(0deg,#087447,#f0d47b);box-shadow:0 0 12px #d8b65366}
+.barlabel{font-size:9px;color:var(--muted)}
+.empty{text-align:center;color:var(--muted);font-size:12px;padding:18px 8px}
+.record{padding:13px 0;border-bottom:1px solid #b49a5540}
+.record:last-child{border:0}
+.recordtop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.recordtitle{font-size:13px;color:var(--gold2)}
+.amount{font-size:15px;color:#f2d98d;direction:ltr;font-weight:bold}
+.meta{font-size:10px;color:var(--muted);margin-top:7px;line-height:1.9}
+.recordactions{display:flex;gap:7px;margin-top:9px}
+.recordactions button{font-size:10px;padding:7px 11px;border-radius:10px}
+.edit{background:#174b36;color:#f4e6b4;border:1px solid #a98b4d}
+.del{background:#482522;color:#ffd9d4;border:1px solid #a75e55}
+.page{display:none}.page.active{display:block}
+.tabs{position:fixed;z-index:4;bottom:0;left:0;right:0;padding:9px 9px calc(9px + env(safe-area-inset-bottom));background:linear-gradient(180deg,#041c14ed,#020d09);border-top:1px solid #b99a4d88;display:grid;grid-template-columns:repeat(4,1fr);max-width:760px;margin:auto}
+.tab{background:transparent;border:0;color:#c9c8a8;font-size:10px;padding:5px;display:grid;gap:4px;justify-items:center}
+.tab b{font-size:21px;font-weight:normal}
+.tab.active{color:var(--gold2);text-shadow:0 0 12px #f1ca61}
+.field{margin:12px 0}
+.field label{display:block;color:#d9c88f;font-size:11px;margin-bottom:7px}
+input,select,textarea{width:100%;border:1px solid #64866a;border-radius:12px;background:#031b13;color:#fff1c4;padding:12px;outline:none;font-size:13px}
+textarea{min-height:65px}
+.dategrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}
+.modal{position:fixed;inset:0;z-index:10;background:#000b;display:none;align-items:center;justify-content:center;padding:15px;overflow:auto}
+.modal.show{display:flex}
+.modalbox{width:100%;max-width:450px;max-height:90vh;overflow:auto;border:1px solid var(--gold);border-radius:23px;background:linear-gradient(145deg,#10412e,#03170f);padding:19px;box-shadow:0 0 30px #d8b65335}
+.modalbox h2{margin-bottom:15px}
+.modalbuttons{display:flex;gap:9px;margin-top:17px}
+.primary,.secondary{flex:1;padding:12px;border-radius:12px;font-size:12px;font-weight:bold}
+.primary{background:linear-gradient(120deg,#f4dc91,#c49a3f);color:#172417;border:0}
+.secondary{background:#174631;color:#f5e7b7;border:1px solid #b99a4d}
+.notice{font-size:11px;line-height:1.9;color:var(--muted)}
+.total-line{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #b49a5540;font-size:12px}
+.total-line strong{color:var(--gold2);direction:ltr}
+@media(min-width:600px){.tile{min-height:130px;padding:18px}.grid{gap:15px}}
 </style>
 </head>
 <body>
-<div class="app">
-<header class="topbar">
- <div class="brand"><div class="logo">ن</div><div><h1>نِگار</h1><small>مدیریت هوشمند معاش و قرضه</small></div></div>
- <button class="icon-btn" onclick="openSettings()">⚙</button>
+<header>
+ <div class="tools"><button class="round" onclick="showPage('settings')">⚙</button><button class="round" onclick="showPage('history')">◷</button></div>
+ <div class="emblem"><span>ن</span></div>
+ <h1>نگار</h1>
+ <div class="tagline">مدیریت هوشمند معاش، قرضه و مصارف</div>
+ <div class="ornament"></div>
 </header>
-
-<section class="hero">
- <div class="hero-head"><span class="eyebrow">وضعیت مالی شما</span><span class="live">● به‌روز</span></div>
- <div class="total-label">مجموع معاش خالص دریافتی</div>
- <div class="total" id="netTotal">0 <span class="currency">افغانی</span></div>
- <div class="hero-foot">
-  <div><small>معاش ناخالص</small><strong id="grossTotal">0</strong></div>
-  <div><small>پرداخت قرضه</small><strong id="repayTotal">0</strong></div>
-  <div class="hero-mark">خالص = ناخالص − بازپرداخت</div>
+<div class="wrap">
+<main id="homePage" class="page active">
+ <section class="hero">
+  <div class="hero-label">معاش خالص</div>
+  <div class="hero-value" id="netTotal">—</div>
+  <div class="hero-sub">معاش دریافتی پس از کسر بازپرداخت قرضه</div>
+  <div class="hero-icon">◈</div>
+ </section>
+ <div class="grid">
+  <div class="tile"><div class="ico">▤</div><div class="name">مجموع معاش دریافتی</div><div class="val" id="grossTotal">—</div><div class="hint">جمع تمام معاش‌های ثبت‌شده</div></div>
+  <div class="tile"><div class="ico">⇄</div><div class="name">مجموع مصارف شخصی دفتر</div><div class="val" id="expenseTotal">—</div><div class="hint">جدا از حساب معاش</div></div>
+  <div class="tile"><div class="ico">♧</div><div class="name">مجموع قرضه گرفته‌شده</div><div class="val" id="loanTotal">—</div><div class="hint">قرضه درآمد محسوب نمی‌شود</div></div>
+  <div class="tile"><div class="ico">↻</div><div class="name">باقی‌مانده قرضه</div><div class="val" id="loanBalance">—</div><div class="hint">پس از بازپرداخت‌ها</div></div>
  </div>
-</section>
+ <section class="section"><div class="head"><h2>روند هفتگی معاش</h2><button class="small" onclick="showPage('reports')">گزارش کامل ←</button></div><div id="homeChart"></div></section>
+ <section class="section"><div class="head"><h2>دسترسی سریع</h2></div>
+  <div class="actions">
+   <button class="action" onclick="openForm('payment')"><span>＋</span><span>ثبت معاش</span></button>
+   <button class="action" onclick="openForm('loan')"><span>♧</span><span>ثبت قرضه</span></button>
+   <button class="action" onclick="openForm('repayment')"><span>↻</span><span>بازپرداخت قرضه</span></button>
+   <button class="action" onclick="openForm('expense')"><span>▤</span><span>مصارف دفتر</span></button>
+  </div>
+ </section>
+ <section class="section"><div class="head"><h2>تاریخ آغاز کار</h2><button class="small" onclick="showPage('settings')">تنظیم</button></div><div id="startSummary" class="notice">تاریخ آغاز کار را در تنظیمات ثبت کنید.</div></section>
+</main>
 
-<section class="stats">
- <div class="stat"><div class="stat-icon">◷</div><small>هفته‌های سپری‌شده</small><strong id="weeksCount">0</strong></div>
- <div class="stat"><div class="stat-icon">◇</div><small>هفته‌های بدون معاش</small><strong id="emptyWeeks">0</strong></div>
- <div class="stat"><div class="stat-icon">✧</div><small>هفته‌های دارای معاش</small><strong id="paidWeeks">0</strong></div>
-</section>
+<main id="reportsPage" class="page">
+ <section class="section"><div class="head"><h2>گزارش‌های مالی</h2></div>
+  <div class="total-line"><span>مجموع معاش دریافتی</span><strong id="rGross">—</strong></div>
+  <div class="total-line"><span>مجموع بازپرداخت قرضه</span><strong id="rRepay">—</strong></div>
+  <div class="total-line"><span>معاش خالص</span><strong id="rNet">—</strong></div>
+  <div class="total-line"><span>مجموع مصارف شخصی دفتر</span><strong id="rExpense">—</strong></div>
+  <div class="total-line"><span>مجموع قرضه گرفته‌شده</span><strong id="rLoan">—</strong></div>
+  <div class="total-line"><span>باقی‌مانده قرضه</span><strong id="rBalance">—</strong></div>
+ </section>
+ <section class="section"><div class="head"><h2>گزارش هفتگی</h2></div><div id="weeklyReport" class="empty">تاریخ آغاز کار را ثبت کنید.</div></section>
+</main>
 
-<div class="section-head"><h2>نمای هفتگی معاش</h2><span id="currentWeekLabel">خلاصه دوره‌ها</span></div>
-<section class="panel">
- <div class="week-top">
-  <div><div class="week-title" id="currentWeekTitle">هفته جاری</div><div class="week-sub" id="currentWeekDates">تاریخ شروع را تنظیم کنید</div></div>
-  <div class="week-total" id="currentWeekGross">0</div>
- </div>
- <div class="net-line"><span>بازپرداخت قرضه این هفته</span><strong id="currentWeekRepay">0</strong></div>
- <div class="net-line"><span>معاش خالص این هفته</span><strong id="currentWeekNet" style="color:var(--mint)">0</strong></div>
- <div class="progress"><i id="weekProgress" style="width:0%"></i></div>
- <div class="progress-label"><span>پرداخت‌های معاش این هفته</span><span id="weekProgressText">0 پرداخت</span></div>
- <div class="chart" id="chart"></div>
-</section>
+<main id="historyPage" class="page">
+ <section class="section"><div class="head"><h2>تاریخچه معاش</h2><button class="small" onclick="openForm('payment')">＋ ثبت</button></div><div id="paymentList"></div></section>
+ <section class="section"><div class="head"><h2>قرضه‌ها</h2><button class="small" onclick="openForm('loan')">＋ ثبت</button></div><div id="loanList"></div></section>
+ <section class="section"><div class="head"><h2>بازپرداخت‌ها</h2><button class="small" onclick="openForm('repayment')">＋ ثبت</button></div><div id="repaymentList"></div></section>
+ <section class="section"><div class="head"><h2>مصارف شخصی دفتر</h2><button class="small" onclick="openForm('expense')">＋ ثبت</button></div><div id="expenseList"></div></section>
+</main>
 
-<div class="actions">
- <button class="action-btn salary" onclick="openSalary()">＋ ثبت معاش</button>
- <button class="action-btn loan" onclick="openLoan()">＋ گرفتن قرضه</button>
- <button class="action-btn repay" onclick="openRepayment()">↘ ثبت پرداخت قرضه</button>
- <button class="action-btn office" onclick="openOfficeExpense()">＋ ثبت مصرف شخصی دفتر</button>
+<main id="settingsPage" class="page">
+ <section class="section"><div class="head"><h2>تنظیمات نگار</h2></div>
+  <div class="field"><label>تاریخ آغاز کار (هجری شمسی)</label><div class="dategrid"><select id="startDay"></select><select id="startMonth"></select><select id="startYear"></select></div></div>
+  <button class="primary" style="width:100%" onclick="saveStart()">ذخیره تاریخ آغاز کار</button>
+ </section>
+ <section class="section"><div class="head"><h2>پشتیبان‌گیری و بازیابی</h2></div>
+  <button class="primary" style="width:100%;margin-bottom:9px" onclick="backup()">دانلود نسخه پشتیبان</button>
+  <button class="secondary" style="width:100%" onclick="$('restoreFile').click()">بازیابی نسخه پشتیبان</button>
+  <input id="restoreFile" type="file" accept=".json,application/json" hidden onchange="restore(event)">
+  <p class="notice">نسخه پشتیبان شامل معاش، قرضه، بازپرداخت و مصارف دفتر است. فایل را در جای امن نگه دارید.</p>
+ </section>
+ <section class="section"><h2>درباره نگار</h2><p class="notice">اطلاعات نگار روی همین دستگاه ذخیره می‌شود.</p></section>
+</main>
 </div>
 
-<div class="section-head"><h2>حساب قرضه‌ها</h2><span id="loanCount">0 قرضه</span></div>
-<section class="panel">
- <div class="stats" style="margin:0 0 12px">
-  <div class="stat"><small>مجموع قرضه</small><strong id="loanGross">0</strong></div>
-  <div class="stat"><small>پرداخت‌شده</small><strong id="loanPaid">0</strong></div>
-  <div class="stat"><small>باقی‌مانده</small><strong id="loanBalance">0</strong></div>
+<nav class="tabs">
+ <button class="tab active" data-page="home" onclick="showPage('home')"><b>⌂</b>خانه</button>
+ <button class="tab" data-page="reports" onclick="showPage('reports')"><b>▥</b>گزارش‌ها</button>
+ <button class="tab" data-page="history" onclick="showPage('history')"><b>◷</b>تاریخچه</button>
+ <button class="tab" data-page="settings" onclick="showPage('settings')"><b>⚙</b>تنظیمات</button>
+</nav>
+
+<div class="modal" id="modal">
+ <div class="modalbox">
+  <h2 id="modalTitle">ثبت اطلاعات</h2>
+  <input type="hidden" id="formType"><input type="hidden" id="editId">
+  <div id="loanSelectWrap" class="field" style="display:none"><label>قرضه مربوط</label><select id="repayLoan"></select></div>
+  <div class="field"><label>مبلغ</label><input id="amount" type="number" min="0.01" step="any" placeholder="مبلغ را وارد کنید"></div>
+  <div class="field"><label>تاریخ (هجری شمسی)</label><div class="dategrid"><select id="dateDay"></select><select id="dateMonth"></select><select id="dateYear"></select></div></div>
+  <div class="field"><label>یادداشت (اختیاری)</label><textarea id="note" placeholder="توضیحات..."></textarea></div>
+  <div class="modalbuttons"><button class="primary" onclick="saveRecord()">ذخیره</button><button class="secondary" onclick="closeModal()">انصراف</button></div>
  </div>
- <div class="payment-list" id="loanList"></div>
-</section>
-
-<!-- Office expenses: independent account -->
-<div class="section-head"><h2>مصارف شخصی دفتر</h2><span id="officeExpenseCount">0 مورد</span></div>
-<section class="panel">
- <div class="stat" style="margin-bottom:12px">
-  <div class="stat-icon">▤</div>
-  <small>مجموع پول شخصی مصرف‌شده برای دفتر</small>
-  <strong id="officeExpenseTotal" style="color:#b7c5ff;font-size:24px">0</strong>
-  <small style="margin-top:5px">این مبلغ جدا از معاش و قرضه محاسبه می‌شود.</small>
- </div>
- <div class="payment-list" id="officeExpenseList"></div>
-</section>
-
-<div class="section-head"><h2>تاریخچه معاش</h2><span id="salaryCount">0 مورد</span></div>
-<section class="panel"><div class="payment-list" id="salaryList"></div></section>
-
-<div class="section-head"><h2>تاریخچه بازپرداخت‌ها</h2><span id="repaymentCount">0 مورد</span></div>
-<section class="panel"><div class="payment-list" id="repaymentList"></div></section>
-
-<div class="section-head"><h2>گزارش هفته‌ها</h2><span>از تاریخ شروع کار</span></div>
-<section class="panel"><div class="week-list" id="weekList"></div></section>
-<p class="note" style="text-align:center">نگار · اطلاعات شما روی همین دستگاه نگهداری می‌شود.</p>
 </div>
-
-<nav class="bottom-nav"><div class="nav-inner">
- <button class="nav-item active" onclick="scrollTopPage()"><span>⌂</span>خانه</button>
- <button class="nav-item" onclick="openSalary()"><span>＋</span>معاش</button>
- <button class="nav-item" onclick="openLoan()"><span>◇</span>قرضه</button>
- <button class="nav-item" onclick="openRepayment()"><span>↘</span>بازپرداخت</button>
- <button class="nav-item" onclick="openSettings()"><span>⚙</span>تنظیمات</button>
-</div></nav>
-
-<!-- Salary modal -->
-<div class="modal-backdrop" id="salaryModal" onclick="backdropClose(event,'salaryModal')"><div class="modal">
- <div class="modal-head"><h3 id="salaryTitle">ثبت معاش جدید</h3><button class="close" onclick="closeModal('salaryModal')">×</button></div>
- <input type="hidden" id="salaryEditId">
- <div class="field"><label>مبلغ معاش دریافتی (افغانی)</label><input id="salaryAmount" type="number" min="0" inputmode="decimal" placeholder="مثلاً 15000"></div>
- <div class="field"><label>تاریخ دریافت</label><div class="date-grid"><select id="salDay"></select><select id="salMonth"></select><select id="salYear"></select></div></div>
- <div class="field"><label>یادداشت</label><textarea id="salaryNote" placeholder="توضیحات اختیاری"></textarea></div>
- <button class="save-btn" onclick="saveSalary()">ذخیره معاش</button>
-</div></div>
-
-<!-- Loan modal -->
-<div class="modal-backdrop" id="loanModal" onclick="backdropClose(event,'loanModal')"><div class="modal">
- <div class="modal-head"><h3 id="loanTitle">ثبت قرضه جدید</h3><button class="close" onclick="closeModal('loanModal')">×</button></div>
- <input type="hidden" id="loanEditId">
- <div class="field"><label>مبلغ قرضه (افغانی)</label><input id="loanAmount" type="number" min="0" inputmode="decimal" placeholder="مثلاً 10000"></div>
- <div class="field"><label>تاریخ گرفتن قرضه</label><div class="date-grid"><select id="loanDay"></select><select id="loanMonthDate"></select><select id="loanYear"></select></div></div>
- <div class="field"><label>توضیحات</label><textarea id="loanNote" placeholder="مثلاً قرضه از دفتر"></textarea></div>
- <button class="save-btn" onclick="saveLoan()">ذخیره قرضه</button>
-</div></div>
-
-<!-- Repayment modal -->
-<div class="modal-backdrop" id="repayModal" onclick="backdropClose(event,'repayModal')"><div class="modal">
- <div class="modal-head"><h3>ثبت بازپرداخت قرضه</h3><button class="close" onclick="closeModal('repayModal')">×</button></div>
- <div class="field"><label>انتخاب قرضه</label><select id="repayLoan"></select></div>
- <div class="field"><label>مبلغ پرداخت‌شده (افغانی)</label><input id="repayAmount" type="number" min="0" inputmode="decimal" placeholder="مبلغ پرداخت"></div>
- <div class="field"><label>تاریخ پرداخت</label><div class="date-grid"><select id="repDay"></select><select id="repMonth"></select><select id="repYear"></select></div></div>
- <div class="field"><label>یادداشت</label><textarea id="repayNote" placeholder="مثلاً کسر از معاش این هفته"></textarea></div>
- <button class="save-btn" onclick="saveRepayment()">ثبت بازپرداخت</button>
- <p class="note">مبلغ بازپرداخت از معاش ناخالص کم نمی‌شود؛ در گزارش، معاش ناخالص و معاش خالص جداگانه نمایش داده می‌شوند.</p>
-</div></div>
-
-<!-- Office expense modal -->
-<div class="modal-backdrop" id="officeExpenseModal" onclick="backdropClose(event,'officeExpenseModal')"><div class="modal">
- <div class="modal-head"><h3 id="officeExpenseTitle">ثبت مصرف شخصی دفتر</h3><button class="close" onclick="closeModal('officeExpenseModal')">×</button></div>
- <input type="hidden" id="officeExpenseEditId">
- <div class="field"><label>مبلغ مصرف (افغانی)</label><input id="officeExpenseAmount" type="number" min="0" step="0.01" inputmode="decimal" placeholder="مثلاً 500"></div>
- <div class="field"><label>تاریخ مصرف</label><div class="date-grid"><select id="officeDay"></select><select id="officeMonth"></select><select id="officeYear"></select></div></div>
- <div class="field"><label>توضیحات مصرف</label><textarea id="officeExpenseNote" placeholder="مثلاً خرید لوازم یا پرداخت هزینه دفتر"></textarea></div>
- <button class="save-btn office-save" onclick="saveOfficeExpense()">ذخیره مصرف دفتر</button>
- <p class="note">این ثبت فقط برای نگهداری حساب پول شخصی مصرف‌شده برای دفتر است و معاش یا قرضه شما را تغییر نمی‌دهد.</p>
-</div></div>
-
-<!-- Settings modal -->
-<div class="modal-backdrop" id="settingsModal" onclick="backdropClose(event,'settingsModal')"><div class="modal">
- <div class="modal-head"><h3>تنظیمات و پشتیبان‌گیری</h3><button class="close" onclick="closeModal('settingsModal')">×</button></div>
- <div class="field"><label>تاریخ شروع کار</label><div class="date-grid"><select id="startDay"></select><select id="startMonth"></select><select id="startYear"></select></div></div>
- <button class="save-btn" onclick="saveStartDate()">ذخیره تاریخ شروع</button>
- <button class="secondary-btn" onclick="exportData()">↓ دریافت نسخه پشتیبان</button>
- <button class="secondary-btn" onclick="$('restoreFile').click()">↑ بازیابی نسخه پشتیبان</button>
- <input type="file" id="restoreFile" accept=".json,application/json" hidden onchange="importData(event)">
- <p class="note">فایل پشتیبان شامل معاش‌ها، قرضه‌ها، بازپرداخت‌ها و مصارف شخصی دفتر است. اطلاعات روی همین دستگاه ذخیره می‌شود. پاک‌کردن داده‌های مرورگر ممکن است اطلاعات را از بین ببرد.</p>
-</div></div>
-<div class="toast" id="toast"></div>
 
 <script>
-const STORAGE_KEY="salaryBook_v3_data";
-const MONTHS=["حمل","ثور","جوزا","سرطان","اسد","سنبله","میزان","عقرب","قوس","جدی","دلو","حوت"];
+const KEY="salaryBook_v3_data";
+const months=["حمل","ثور","جوزا","سرطان","اسد","سنبله","میزان","عقرب","قوس","جدی","دلو","حوت"];
 const $=id=>document.getElementById(id);
 let data=loadData();
-
-function loadData(){
- try{
-  const d=JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}");
-  return {
-   startDate:d.startDate||"",
-   payments:Array.isArray(d.payments)?d.payments:[],
-   loans:Array.isArray(d.loans)?d.loans:[],
-   repayments:Array.isArray(d.repayments)?d.repayments:[],
-   officeExpenses:Array.isArray(d.officeExpenses)?d.officeExpenses:[]
-  };
- }catch(e){return {startDate:"",payments:[],loans:[],repayments:[],officeExpenses:[]}}
+function loadData(){try{let d=JSON.parse(localStorage.getItem(KEY)||"{}");return{startDate:d.startDate||"",payments:Array.isArray(d.payments)?d.payments:[],loans:Array.isArray(d.loans)?d.loans:[],repayments:Array.isArray(d.repayments)?d.repayments:[],officeExpenses:Array.isArray(d.officeExpenses)?d.officeExpenses:[]}}catch(e){return{startDate:"",payments:[],loans:[],repayments:[],officeExpenses:[]}}}
+function save(){localStorage.setItem(KEY,JSON.stringify(data))}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
+function n(x){return Number(x)||0}
+function fmt(x){return n(x).toLocaleString("en-US",{maximumFractionDigits:2})}
+function sum(a){return a.reduce((s,x)=>s+n(x.amount),0)}
+function today(){return new Date().toISOString().slice(0,10)}
+function jp(iso){let [y,m,d]=iso.split("-").map(Number),dt=new Date(Date.UTC(y,m-1,d,12)),p={};new Intl.DateTimeFormat("en-US-u-ca-persian-nu-latn",{year:"numeric",month:"numeric",day:"numeric"}).formatToParts(dt).forEach(x=>{if(x.type!=="literal")p[x.type]=+x.value});return p}
+function toISO(y,m,d){let base=Date.UTC(+y+621,0,1,12);for(let i=-100;i<370;i++){let iso=new Date(base+i*86400000).toISOString().slice(0,10),p=jp(iso);if(p.year===+y&&p.month===+m&&p.day===+d)return iso}return""}
+function dateText(iso){if(!iso)return"—";let p=jp(iso);return `${p.day} ${months[p.month-1]} ${p.year}`}
+function fillDate(prefix,iso){let p=jp(iso||today()),day=$(prefix+"Day"),month=$(prefix+"Month"),year=$(prefix+"Year");day.innerHTML="";month.innerHTML="";year.innerHTML="";for(let i=1;i<=31;i++)day.add(new Option(i,i));months.forEach((x,i)=>month.add(new Option(x,i+1)));for(let i=1390;i<=1450;i++)year.add(new Option(i,i));day.value=p.day;month.value=p.month;year.value=p.year}
+function readDate(prefix){return toISO($(prefix+"Year").value,$(prefix+"Month").value,$(prefix+"Day").value)}
+function paid(id){return sum(data.repayments.filter(x=>x.loanId===id))}
+function remaining(id){let l=data.loans.find(x=>x.id===id);return l?Math.max(0,n(l.amount)-paid(id)):0}
+function esc(s){return String(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function showPage(name){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));$(name+"Page").classList.add("active");document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.dataset.page===name));window.scrollTo({top:0,behavior:"smooth"})}
+const cfg={payment:["معاش","payments"],loan:["قرضه","loans"],repayment:["بازپرداخت قرضه","repayments"],expense:["مصرف شخصی دفتر","officeExpenses"]};
+function openForm(type,editId=""){
+ $("formType").value=type;$("editId").value=editId;$("modalTitle").textContent=(editId?"ویرایش ":"ثبت ")+cfg[type][0];$("amount").value="";$("note").value="";$("loanSelectWrap").style.display=type==="repayment"?"block":"none";fillDate("date",today());
+ if(type==="repayment"){let sel=$("repayLoan");sel.innerHTML="";data.loans.filter(l=>remaining(l.id)>0).forEach(l=>sel.add(new Option(dateText(l.date)+" · باقی‌مانده "+fmt(remaining(l.id)),l.id)));if(!sel.options.length){alert("قرضهٔ باقی‌مانده برای بازپرداخت وجود ندارد.");return}}
+ if(editId){let item=data[cfg[type][1]].find(x=>x.id===editId);if(!item)return;$("amount").value=item.amount;$("note").value=item.note||"";fillDate("date",item.date);if(type==="repayment")$("repayLoan").value=item.loanId}
+ $("modal").classList.add("show")
 }
-function persist(){localStorage.setItem(STORAGE_KEY,JSON.stringify(data))}
-function pad(n){return String(n).padStart(2,"0")}
-function toISO(d){return `${d.getUTCFullYear()}-${pad(d.getUTCMonth()+1)}-${pad(d.getUTCDate())}`}
-function parseISO(s){const [y,m,d]=s.split("-").map(Number);return new Date(Date.UTC(y,m-1,d))}
-function todayISO(){return toISO(new Date())}
-function jalaliParts(iso){
- const parts=new Intl.DateTimeFormat("en-US-u-ca-persian-nu-latn",{year:"numeric",month:"numeric",day:"numeric",timeZone:"UTC"}).formatToParts(parseISO(iso));
- const get=t=>Number(parts.find(x=>x.type===t).value);
- return {y:get("year"),m:get("month"),d:get("day")};
+function closeModal(){$("modal").classList.remove("show")}
+function saveRecord(){
+ let type=$("formType").value,edit=$("editId").value,amount=n($("amount").value),date=readDate("date"),note=$("note").value.trim(),list=data[cfg[type][1]],loanId=type==="repayment"?$("repayLoan").value:"";
+ if(amount<=0){alert("مبلغ معتبر وارد کنید.");return}if(!date){alert("تاریخ انتخاب‌شده معتبر نیست.");return}
+ if(type==="repayment"){let l=data.loans.find(x=>x.id===loanId);if(!l){alert("قرضه را انتخاب کنید.");return}let previous=sum(data.repayments.filter(x=>x.loanId===loanId&&x.id!==edit));if(amount>n(l.amount)-previous){alert("مبلغ بازپرداخت از باقی‌مانده قرضه بیشتر است.");return}}
+ if(type==="loan"&&edit&&amount<paid(edit)){alert("مبلغ قرضه نمی‌تواند از مجموع بازپرداخت‌های قبلی کمتر باشد.");return}
+ if(edit){let item=list.find(x=>x.id===edit);if(!item)return;item.amount=amount;item.date=date;item.note=note;if(type==="repayment")item.loanId=loanId}
+ else{let item={id:uid(),amount,date,note};if(type==="repayment")item.loanId=loanId;list.push(item)}
+ save();closeModal();render()
 }
-function jalaliToISO(y,m,d){
- let guess=new Date(Date.UTC(y+621,m-1,d));
- for(let i=0;i<5;i++){
-  const p=jalaliParts(toISO(guess));
-  const diff=(y-p.y)*365+(m-p.m)*31+(d-p.d);
-  if(!diff)break;
-  guess=new Date(guess.getTime()+diff*86400000);
- }
- for(let i=-3;i<=3;i++){
-  const test=toISO(new Date(guess.getTime()+i*86400000)),p=jalaliParts(test);
-  if(p.y===y&&p.m===m&&p.d===d)return test;
- }
- return toISO(guess);
+function deleteItem(type,itemId){
+ if(type==="loan"){let related=data.repayments.filter(x=>x.loanId===itemId);let msg=related.length?`این قرضه ${related.length} بازپرداخت دارد. با حذف قرضه، بازپرداخت‌های وابسته نیز حذف می‌شوند. ادامه می‌دهید؟`:"این قرضه حذف شود؟";if(!confirm(msg))return;data.repayments=data.repayments.filter(x=>x.loanId!==itemId);data.loans=data.loans.filter(x=>x.id!==itemId)}
+ else{if(!confirm("این مورد حذف شود؟"))return;data[cfg[type][1]]=data[cfg[type][1]].filter(x=>x.id!==itemId)}
+ save();render()
 }
-function fmtDate(iso){
- if(!iso)return "تعیین نشده";
- const p=jalaliParts(iso);return `${p.d} ${MONTHS[p.m-1]} ${p.y}`;
+function recordHTML(x,type){
+ let extra="";
+ if(type==="loan")extra=`<div class="meta">بازپرداخت‌شده: ${fmt(paid(x.id))} · باقی‌مانده: ${fmt(remaining(x.id))}${remaining(x.id)===0?" · تسویه شده":""}</div>`;
+ if(type==="repayment"){let l=data.loans.find(y=>y.id===x.loanId);extra=`<div class="meta">قرضه مربوط: ${l?dateText(l.date):"قرضه حذف‌شده"}</div>`}
+ return `<div class="record"><div class="recordtop"><span class="recordtitle">${cfg[type][0]}</span><span class="amount">${fmt(x.amount)}</span></div><div class="meta">${dateText(x.date)}${x.note?" · "+esc(x.note):""}</div>${extra}<div class="recordactions"><button class="edit" onclick="openForm('${type}','${x.id}')">ویرایش</button><button class="del" onclick="deleteItem('${type}','${x.id}')">حذف</button></div></div>`
 }
-function money(n){return Number(n||0).toLocaleString("en-US",{maximumFractionDigits:2})}
-function diffDays(a,b){return Math.floor((parseISO(b)-parseISO(a))/86400000)}
-function uid(){return String(Date.now())+"_"+Math.random().toString(16).slice(2)}
-function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-
-function fillDate(prefix,iso){
- const p=jalaliParts(iso||todayISO());
- $(prefix+"Day").innerHTML=Array.from({length:31},(_,i)=>`<option value="${i+1}">${i+1}</option>`).join("");
- const monthId=prefix==="loan"?"loanMonthDate":prefix+"Month";
- $(monthId).innerHTML=MONTHS.map((m,i)=>`<option value="${i+1}">${m}</option>`).join("");
- $(prefix+"Year").innerHTML=Array.from({length:31},(_,i)=>p.y-15+i).map(y=>`<option value="${y}">${y}</option>`).join("");
- $(prefix+"Day").value=p.d;$(monthId).value=p.m;$(prefix+"Year").value=p.y;
-}
-function readDate(prefix){
- const monthId=prefix==="loan"?"loanMonthDate":prefix+"Month";
- return jalaliToISO(Number($(prefix+"Year").value),Number($(monthId).value),Number($(prefix+"Day").value));
-}
-function showModal(id){$(id).classList.add("show")}
-function closeModal(id){$(id).classList.remove("show")}
-function backdropClose(e,id){if(e.target.id===id)closeModal(id)}
-function toast(s){$("toast").textContent=s;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),2300)}
-function scrollTopPage(){window.scrollTo({top:0,behavior:"smooth"})}
-
-function loanPaid(id){return data.repayments.filter(r=>r.loanId===id).reduce((s,r)=>s+Number(r.amount),0)}
-function loanRemaining(loan){return Math.max(0,Number(loan.amount)-loanPaid(loan.id))}
-function totalOf(arr){return arr.reduce((s,x)=>s+Number(x.amount),0)}
-function weekOf(date){
- if(!data.startDate||date<data.startDate)return null;
- return Math.floor(diffDays(data.startDate,date)/7)+1;
-}
-function getWeeks(){
- if(!data.startDate||data.startDate>todayISO())return [];
- const count=Math.floor(diffDays(data.startDate,todayISO())/7)+1;
- return Array.from({length:count},(_,i)=>{
-  const start=toISO(new Date(parseISO(data.startDate).getTime()+i*7*86400000));
-  const end=toISO(new Date(parseISO(start).getTime()+6*86400000));
-  const salaries=data.payments.filter(p=>p.date>=start&&p.date<=end);
-  const repayments=data.repayments.filter(p=>p.date>=start&&p.date<=end);
-  const gross=totalOf(salaries),repay=totalOf(repayments);
-  return {number:i+1,start,end,salaries,repayments,gross,repay,net:gross-repay};
- });
-}
-
-function openSalary(id){
- $("salaryEditId").value="";$("salaryTitle").textContent="ثبت معاش جدید";
- $("salaryAmount").value="";$("salaryNote").value="";fillDate("sal",todayISO());
- if(id){
-  const p=data.payments.find(x=>x.id===id);if(!p)return;
-  $("salaryEditId").value=id;$("salaryTitle").textContent="ویرایش معاش";
-  $("salaryAmount").value=p.amount;$("salaryNote").value=p.note||"";fillDate("sal",p.date);
- }
- showModal("salaryModal");
-}
-function saveSalary(){
- const amount=Number($("salaryAmount").value);
- if(!Number.isFinite(amount)||amount<=0){toast("مبلغ معاش را درست وارد کنید");return}
- const id=$("salaryEditId").value;
- const item={id:id||uid(),amount,date:readDate("sal"),note:$("salaryNote").value.trim()};
- if(id)data.payments=data.payments.map(p=>p.id===id?item:p);
- else data.payments.push(item);
- persist();closeModal("salaryModal");render();toast("معاش ذخیره شد");
-}
-function deleteSalary(id){
- if(!confirm("این دریافت معاش حذف شود؟"))return;
- data.payments=data.payments.filter(p=>p.id!==id);persist();render();toast("معاش حذف شد");
-}
-
-function openLoan(id){
- $("loanEditId").value="";$("loanTitle").textContent="ثبت قرضه جدید";
- $("loanAmount").value="";$("loanNote").value="";fillDate("loan",todayISO());
- if(id){
-  const l=data.loans.find(x=>x.id===id);if(!l)return;
-  if(loanPaid(id)>0){toast("قرضه‌ای که بازپرداخت دارد قابل ویرایش نیست");return}
-  $("loanEditId").value=id;$("loanTitle").textContent="ویرایش قرضه";
-  $("loanAmount").value=l.amount;$("loanNote").value=l.note||"";fillDate("loan",l.date);
- }
- showModal("loanModal");
-}
-function saveLoan(){
- const amount=Number($("loanAmount").value);
- if(!Number.isFinite(amount)||amount<=0){toast("مبلغ قرضه را درست وارد کنید");return}
- const id=$("loanEditId").value;
- const item={id:id||uid(),amount,date:readDate("loan"),note:$("loanNote").value.trim()};
- if(id)data.loans=data.loans.map(l=>l.id===id?item:l);
- else data.loans.push(item);
- persist();closeModal("loanModal");render();toast("قرضه ثبت شد");
-}
-function deleteLoan(id){
- if(data.repayments.some(r=>r.loanId===id)){
-  toast("این قرضه بازپرداخت دارد و حذف نمی‌شود");return;
- }
- if(!confirm("این قرضه حذف شود؟"))return;
- data.loans=data.loans.filter(l=>l.id!==id);persist();render();toast("قرضه حذف شد");
-}
-
-function openRepayment(){
- const open=data.loans.filter(l=>loanRemaining(l)>0);
- if(!open.length){toast("قرضه باقی‌مانده‌ای برای پرداخت وجود ندارد");return}
- $("repayLoan").innerHTML=open.map(l=>`<option value="${l.id}">${escapeHTML(l.note||"قرضه")} · باقی‌مانده ${money(loanRemaining(l))}</option>`).join("");
- $("repayAmount").value="";$("repayNote").value="";fillDate("rep",todayISO());
- showModal("repayModal");
-}
-function saveRepayment(){
- const loanId=$("repayLoan").value,loan=data.loans.find(l=>l.id===loanId);
- const amount=Number($("repayAmount").value);
- if(!loan){toast("قرضه را انتخاب کنید");return}
- if(!Number.isFinite(amount)||amount<=0){toast("مبلغ پرداخت را درست وارد کنید");return}
- const remaining=loanRemaining(loan);
- if(amount>remaining){toast("مبلغ پرداخت از باقی‌مانده قرضه بیشتر است");return}
- data.repayments.push({id:uid(),loanId,amount,date:readDate("rep"),note:$("repayNote").value.trim()});
- persist();closeModal("repayModal");render();toast("بازپرداخت ثبت شد");
-}
-function deleteRepayment(id){
- if(!confirm("این بازپرداخت حذف شود؟"))return;
- data.repayments=data.repayments.filter(r=>r.id!==id);persist();render();toast("بازپرداخت حذف شد");
-}
-
-/* Office expense functions: kept separate from salary and loans */
-function openOfficeExpense(id){
- $("officeExpenseEditId").value="";
- $("officeExpenseTitle").textContent="ثبت مصرف شخصی دفتر";
- $("officeExpenseAmount").value="";
- $("officeExpenseNote").value="";
- fillDate("office",todayISO());
-
- if(id){
-  const item=data.officeExpenses.find(x=>x.id===id);
-  if(!item)return;
-  $("officeExpenseEditId").value=id;
-  $("officeExpenseTitle").textContent="ویرایش مصرف دفتر";
-  $("officeExpenseAmount").value=item.amount;
-  $("officeExpenseNote").value=item.note||"";
-  fillDate("office",item.date);
- }
- showModal("officeExpenseModal");
-}
-function saveOfficeExpense(){
- const amount=Number($("officeExpenseAmount").value);
- if(!Number.isFinite(amount)||amount<=0){
-  toast("مبلغ مصرف را درست وارد کنید");return;
- }
- const id=$("officeExpenseEditId").value;
- const item={
-  id:id||uid(),
-  amount,
-  date:readDate("office"),
-  note:$("officeExpenseNote").value.trim()
- };
- if(id)data.officeExpenses=data.officeExpenses.map(x=>x.id===id?item:x);
- else data.officeExpenses.push(item);
-
- persist();
- closeModal("officeExpenseModal");
- render();
- toast("مصرف دفتر ذخیره شد");
-}
-function deleteOfficeExpense(id){
- if(!confirm("این مصرف دفتر حذف شود؟"))return;
- data.officeExpenses=data.officeExpenses.filter(x=>x.id!==id);
- persist();
- render();
- toast("مصرف دفتر حذف شد");
-}
-function renderOfficeExpenses(){
- const list=[...data.officeExpenses].sort((a,b)=>b.date.localeCompare(a.date));
- $("officeExpenseTotal").textContent=money(totalOf(data.officeExpenses));
- $("officeExpenseCount").textContent=`${list.length} مورد`;
-
- $("officeExpenseList").innerHTML=list.length?list.map(item=>`
-  <div class="payment">
-   <div class="symbol office-symbol">▤</div>
-   <div class="info">
-    <strong>${escapeHTML(item.note||"مصرف شخصی دفتر")}</strong>
-    <small>${fmtDate(item.date)}</small>
-   </div>
-   <div class="side">
-    <strong class="office-amount">${money(item.amount)}</strong>
-    <div class="item-actions">
-     <button class="mini-btn" onclick="openOfficeExpense('${item.id}')">ویرایش</button>
-     <button class="mini-btn delete" onclick="deleteOfficeExpense('${item.id}')">حذف</button>
-    </div>
-   </div>
-  </div>
- `).join(""):`<div class="empty">هنوز مصرفی برای دفتر ثبت نشده است.<br>با ثبت اولین مصرف، تاریخچه آن اینجا نمایش داده می‌شود.</div>`;
-}
-
+function renderList(target,type){let a=data[cfg[type][1]].slice().sort((x,y)=>y.date.localeCompare(x.date));$(target).innerHTML=a.length?a.map(x=>recordHTML(x,type)).join(""):'<div class="empty">هنوز موردی ثبت نشده است.</div>'}
+function weeksData(){if(!data.startDate)return[];let start=new Date(data.startDate+"T12:00:00"),now=new Date(today()+"T12:00:00"),count=Math.min(60,Math.max(1,Math.floor((now-start)/604800000)+1)),out=[];for(let i=0;i<count;i++){let a=new Date(start.getTime()+i*604800000),b=new Date(a.getTime()+604799999),from=a.toISOString().slice(0,10),to=b.toISOString().slice(0,10),gross=sum(data.payments.filter(x=>x.date>=from&&x.date<=to)),repay=sum(data.repayments.filter(x=>x.date>=from&&x.date<=to));out.push({i,from,to,gross,repay})}return out}
+function renderChart(){let w=weeksData().slice(-7);if(!w.length||w.every(x=>!x.gross))return'<div class="empty">پس از ثبت معاش، نمودار اینجا نمایش داده می‌شود.</div>';let max=Math.max(1,...w.map(x=>x.gross));return `<div class="chart">${w.map(x=>`<div class="barbox"><div class="bar" style="height:${Math.max(3,x.gross/max*100)}%"></div><div class="barlabel">ه${x.i+1}</div></div>`).join("")}</div>`}
+function renderWeekly(){let w=weeksData().reverse();$("weeklyReport").innerHTML=w.length?w.map(x=>`<div class="record"><div class="recordtop"><span class="recordtitle">هفته ${x.i+1}</span><span class="amount">${fmt(x.gross-x.repay)}</span></div><div class="meta">${dateText(x.from)} تا ${dateText(x.to)}<br>معاش: ${fmt(x.gross)} · بازپرداخت: ${fmt(x.repay)} · خالص: ${fmt(x.gross-x.repay)}</div></div>`).join(""):'<div class="empty">برای نمایش گزارش، تاریخ آغاز کار را ثبت کنید.</div>'}
 function render(){
- const gross=totalOf(data.payments),repaid=totalOf(data.repayments);
- $("grossTotal").textContent=money(gross);
- $("repayTotal").textContent=money(repaid);
- $("netTotal").innerHTML=`${money(gross-repaid)} <span class="currency">افغانی</span>`;
- renderLoans();
- renderSalaries();
- renderRepayments();
- renderOfficeExpenses();
- renderWeeks();
+ let gross=sum(data.payments),repay=sum(data.repayments),loan=sum(data.loans),expense=sum(data.officeExpenses),balance=Math.max(0,loan-repay),net=gross-repay;
+ $("netTotal").textContent=data.payments.length||data.repayments.length?fmt(net):"—";
+ $("grossTotal").textContent=data.payments.length?fmt(gross):"—";
+ $("expenseTotal").textContent=data.officeExpenses.length?fmt(expense):"—";
+ $("loanTotal").textContent=data.loans.length?fmt(loan):"—";
+ $("loanBalance").textContent=data.loans.length?fmt(balance):"—";
+ $("rGross").textContent=fmt(gross);$("rRepay").textContent=fmt(repay);$("rNet").textContent=fmt(net);$("rExpense").textContent=fmt(expense);$("rLoan").textContent=fmt(loan);$("rBalance").textContent=fmt(balance);
+ $("homeChart").innerHTML=renderChart();renderWeekly();
+ renderList("paymentList","payment");renderList("loanList","loan");renderList("repaymentList","repayment");renderList("expenseList","expense");
+ $("startSummary").textContent=data.startDate?`تاریخ آغاز کار: ${dateText(data.startDate)} · ${weeksData().length} هفته از آغاز کار گذشته است.`:"تاریخ آغاز کار را در تنظیمات ثبت کنید.";
+ if(data.startDate){let p=jp(data.startDate);$("startDay").value=p.day;$("startMonth").value=p.month;$("startYear").value=p.year}
 }
-function renderLoans(){
- const borrowed=totalOf(data.loans),paid=totalOf(data.repayments);
- const remaining=data.loans.reduce((s,l)=>s+loanRemaining(l),0);
- $("loanGross").textContent=money(borrowed);$("loanPaid").textContent=money(paid);
- $("loanBalance").textContent=money(remaining);$("loanCount").textContent=`${data.loans.length} قرضه`;
- const sorted=[...data.loans].sort((a,b)=>b.date.localeCompare(a.date));
- $("loanList").innerHTML=sorted.length?sorted.map(l=>{
-  const rem=loanRemaining(l),done=rem===0;
-  return `<div class="loan-item">
-   <div class="symbol loan-symbol">${done?"✓":"◇"}</div>
-   <div class="info"><strong>${escapeHTML(l.note||"قرضه از دفتر")}</strong><small>${fmtDate(l.date)} · مبلغ اولیه ${money(l.amount)}</small><div class="loan-balance">${done?"تصفیه‌شده":`باقی‌مانده: ${money(rem)} افغانی`}</div></div>
-   <div class="side"><strong class="debt">${money(rem)}</strong><div class="item-actions"><button class="mini-btn" onclick="openLoan('${l.id}')">ویرایش</button><button class="mini-btn delete" onclick="deleteLoan('${l.id}')">حذف</button></div></div>
-  </div>`;
- }).join(""):`<div class="empty">هنوز قرضه‌ای ثبت نشده است.<br>با ثبت اولین قرضه، حساب آن اینجا نمایش داده می‌شود.</div>`;
-}
-function renderSalaries(){
- const list=[...data.payments].sort((a,b)=>b.date.localeCompare(a.date));
- $("salaryCount").textContent=`${list.length} مورد`;
- $("salaryList").innerHTML=list.length?list.map(p=>`
- <div class="payment">
-  <div class="symbol">↗</div><div class="info"><strong>${escapeHTML(p.note||"دریافت معاش")}</strong><small>${fmtDate(p.date)}</small></div>
-  <div class="side"><strong>${money(p.amount)}</strong><div class="item-actions"><button class="mini-btn" onclick="openSalary('${p.id}')">ویرایش</button><button class="mini-btn delete" onclick="deleteSalary('${p.id}')">حذف</button></div></div>
- </div>`).join(""):`<div class="empty">هنوز معاشی ثبت نشده است.</div>`;
-}
-function renderRepayments(){
- const list=[...data.repayments].sort((a,b)=>b.date.localeCompare(a.date));
- $("repaymentCount").textContent=`${list.length} مورد`;
- $("repaymentList").innerHTML=list.length?list.map(r=>{
-  const loan=data.loans.find(l=>l.id===r.loanId);
-  return `<div class="payment">
-   <div class="symbol loan-symbol">↘</div><div class="info"><strong>${escapeHTML(r.note||"بازپرداخت قرضه")}</strong><small>${fmtDate(r.date)} · ${escapeHTML(loan?.note||"قرضه")}</small></div>
-   <div class="side"><strong class="debt">${money(r.amount)}</strong><div class="item-actions"><button class="mini-btn delete" onclick="deleteRepayment('${r.id}')">حذف</button></div></div>
-  </div>`;
- }).join(""):`<div class="empty">هنوز بازپرداختی ثبت نشده است.</div>`;
-}
-function renderWeeks(){
- const weeks=getWeeks(),paid=weeks.filter(w=>w.salaries.length),empty=weeks.length-paid.length;
- $("weeksCount").textContent=weeks.length;$("paidWeeks").textContent=paid.length;$("emptyWeeks").textContent=empty;
- const current=weeks[weeks.length-1];
- $("currentWeekTitle").textContent=current?`هفته ${current.number}`:"هنوز شروع نشده";
- $("currentWeekDates").textContent=current?`${fmtDate(current.start)} تا ${fmtDate(current.end)}`:"تاریخ شروع کار را در تنظیمات وارد کنید";
- $("currentWeekGross").textContent=money(current?.gross||0);
- $("currentWeekRepay").textContent=money(current?.repay||0);
- $("currentWeekNet").textContent=money(current?.net||0);
- $("weekProgressText").textContent=`${current?.salaries.length||0} دریافت`;
- $("weekProgress").style.width=current&&current.gross?"100%":"0%";
- $("currentWeekLabel").textContent=`${weeks.length} دوره`;
- const last=weeks.slice(-7),max=Math.max(1,...last.map(w=>w.gross));
- $("chart").innerHTML=last.length?last.map((w,i)=>{
-  const h=w.gross?Math.max(8,w.gross/max*65):4;
-  return `<div class="bar-wrap"><div class="bar ${i===last.length-1?"active":""}" style="height:${h}px" title="معاش ${money(w.gross)}"></div><span class="bar-label">${w.number}</span></div>`;
- }).join(""):`<div class="empty">تاریخ شروع را در تنظیمات وارد کنید.</div>`;
- $("weekList").innerHTML=weeks.length?[...weeks].reverse().map(w=>`
- <div class="week-row ${w.salaries.length?"":"no-pay"}">
-  <div class="week-dot"></div><div><strong>هفته ${w.number}</strong><small>${fmtDate(w.start)} تا ${fmtDate(w.end)}</small><small>ناخالص ${money(w.gross)} · بازپرداخت ${money(w.repay)}</small></div>
-  <b>${money(w.net)}</b>
- </div>`).join(""):`<div class="empty">برای ساخت گزارش، تاریخ شروع کار را وارد کنید.</div>`;
-}
-
-function openSettings(){fillDate("start",data.startDate||todayISO());showModal("settingsModal")}
-function saveStartDate(){
- const date=readDate("start");
- if(date>todayISO()){toast("تاریخ شروع نمی‌تواند در آینده باشد");return}
- data.startDate=date;persist();closeModal("settingsModal");render();toast("تاریخ شروع ذخیره شد");
-}
-function exportData(){
- const blob=new Blob([JSON.stringify({...data,backupCreated:new Date().toISOString()},null,2)],{type:"application/json"});
- const url=URL.createObjectURL(blob),a=document.createElement("a");
- a.href=url;a.download="negar-full-backup.json";a.click();URL.revokeObjectURL(url);
- toast("نسخه پشتیبان آماده شد");
-}
-function importData(e){
- const file=e.target.files[0];if(!file)return;
- const reader=new FileReader();
- reader.onload=()=>{
-  try{
-   const d=JSON.parse(reader.result);
-   if(!Array.isArray(d.payments)||!Array.isArray(d.loans||[])||!Array.isArray(d.repayments||[])||!Array.isArray(d.officeExpenses||[]))throw new Error("invalid");
-   if(!confirm("تمام اطلاعات فعلی با اطلاعات فایل پشتیبان جایگزین شود؟"))return;
-   data={
-    startDate:d.startDate||"",
-    payments:d.payments,
-    loans:d.loans||[],
-    repayments:d.repayments||[],
-    officeExpenses:d.officeExpenses||[]
-   };
-   persist();render();closeModal("settingsModal");toast("بازیابی اطلاعات انجام شد");
-  }catch(err){toast("فایل پشتیبان معتبر نیست")}
-  e.target.value="";
- };
- reader.readAsText(file);
-}
-
-render();
-if("serviceWorker" in navigator){
- window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
-}
+function saveStart(){let d=readDate("start");if(!d){alert("تاریخ معتبر نیست.");return}data.startDate=d;save();render();alert("تاریخ آغاز کار ذخیره شد.")}
+function backup(){let blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="negar-backup.json";a.click();URL.revokeObjectURL(url)}
+function restore(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let d=JSON.parse(r.result);if(!d||!Array.isArray(d.payments)||!Array.isArray(d.loans)||!Array.isArray(d.repayments))throw 0;if(!confirm("اطلاعات فعلی با نسخه پشتیبان جایگزین شود؟"))return;data={startDate:d.startDate||"",payments:d.payments,loans:d.loans,repayments:d.repayments,officeExpenses:Array.isArray(d.officeExpenses)?d.officeExpenses:[]};save();render();alert("اطلاعات بازیابی شد.")}catch(err){alert("فایل پشتیبان معتبر نیست.")}e.target.value=""};r.readAsText(f)}
+function init(){fillDate("start",data.startDate||today());fillDate("date",today());render()}
+init();
+if("serviceWorker"in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
 </script>
 </body>
 </html>
