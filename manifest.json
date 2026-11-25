@@ -1,12 +1,12 @@
 
 {
-  "name": "مدیریت معاش هفتگی",
-  "short_name": "معاش من",
+  "name": "نگار | مدیریت مالی",
+  "short_name": "نگار",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f1f5f3",
-  "theme_color": "#176b55",
+  "background_color": "#03140f",
+  "theme_color": "#031b14",
   "lang": "fa",
   "dir": "rtl"
 }
